@@ -1,0 +1,12 @@
+Fixed ActivationExtractor Test Results
+================================================================================
+
+Happy activation shape: torch.Size([153, 2, 1, 1024])
+Sad activation shape: torch.Size([153, 2, 1, 1024])
+
+Cosine similarity (layer 12): 0.946118
+Mean similarity across timesteps: 0.949280
+Std similarity: 0.025849
+
+Max dimension difference: 0.5913
+Mean dimension difference: 0.0457

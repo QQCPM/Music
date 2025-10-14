@@ -1,0 +1,19 @@
+MusicGen Activation Extraction Diagnostic Report
+================================================================================
+
+Model: MusicGen Small
+Layers monitored: [0, 6, 12]
+
+Prompt: happy upbeat cheerful music
+  Forward passes: 459
+  Audio shape: torch.Size([1, 1, 96000])
+  Shapes seen: {'torch.Size([2, 1, 1024])': 459}
+
+Prompt: sad melancholic sorrowful music
+  Forward passes: 459
+  Audio shape: torch.Size([1, 1, 96000])
+  Shapes seen: {'torch.Size([2, 1, 1024])': 459}
+
+
+Conclusion:
+Capturing 459 timesteps. Verify storage mechanism.

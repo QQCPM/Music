@@ -1,0 +1,9 @@
+{
+  "control_test": true,
+  "acoustic_validation": false,
+  "statistical_significance": false,
+  "temporal_consistency": true,
+  "control_similarity": 0.9508164525032043,
+  "emotion_similarity": 0.9461,
+  "random_baseline": -0.002792527200654149
+}
