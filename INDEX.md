@@ -4,32 +4,32 @@
 
 ---
 
-## 🚀 I Want To...
+## I Want To...
 
-### → **Start Phase 1 Training (NEW USER)**
+### **Start Phase 1 Training (NEW USER)**
 Read: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) (10-minute guide)
 ```bash
 python3 experiments/train_sae_on_t5_embeddings.py
 ```
 
-### → **Understand What We Built**
+### **Understand What We Built**
 Read: [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) (visual system map)
 
-### → **See Phase 0 Results**
+### **See Phase 0 Results**
 Read: [PHASE0_TO_PHASE1_SUMMARY.md](PHASE0_TO_PHASE1_SUMMARY.md) (discovery summary)
 
-### → **Plan Phase 1 in Detail**
+### **Plan Phase 1 in Detail**
 Read: [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) (3-week plan)
 
-### → **Navigate the Codebase**
+### **Navigate the Codebase**
 Read: [START_HERE.md](START_HERE.md) (file structure guide)
 
-### → **Get Project Overview**
+### **Get Project Overview**
 Read: [README.md](README.md) (main documentation)
 
 ---
 
-## 📚 Documentation by Topic
+## Documentation by Topic
 
 ### Getting Started
 - **[PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md)** - Start here! 10-minute guide to Phase 1
@@ -53,7 +53,7 @@ Read: [README.md](README.md) (main documentation)
 
 ---
 
-## 🎯 By User Type
+## By User Type
 
 ### Researcher (Understanding the Science)
 1. [PHASE0_TO_PHASE1_SUMMARY.md](PHASE0_TO_PHASE1_SUMMARY.md) - What we discovered
@@ -72,95 +72,95 @@ Read: [README.md](README.md) (main documentation)
 
 ---
 
-## 📂 File Directory
+## File Directory
 
-### 📖 Documentation
+### Documentation
 ```
 MusicGen/
-├── INDEX.md                          ← This file
-├── README.md                         ← Project overview
-├── START_HERE.md                     ← Codebase guide
-│
-├── PHASE0_TO_PHASE1_SUMMARY.md      ← Phase 0 results
-├── PHASE1_QUICKSTART.md             ← Quick start guide
-├── PHASE1_ROADMAP.md                ← 3-week plan
-└── SYSTEM_OVERVIEW.md               ← Architecture
+INDEX.md This file
+README.md Project overview
+START_HERE.md Codebase guide
+
+PHASE0_TO_PHASE1_SUMMARY.md Phase 0 results
+PHASE1_QUICKSTART.md Quick start guide
+PHASE1_ROADMAP.md 3-week plan
+SYSTEM_OVERVIEW.md Architecture
 ```
 
-### 🧠 Source Code
+### Source Code
 ```
 src/
-├── models/
-│   └── sparse_autoencoder.py        ← SAE (768→6144→768)
-│
-└── utils/
-    ├── activation_utils.py          ← MusicGen hooks
-    ├── audio_utils.py               ← Audio processing
-    ├── dataset_utils.py             ← T5 data loading
-    └── visualization_utils.py       ← Plotting
+models/
+sparse_autoencoder.py SAE (7686144768)
+
+utils/
+activation_utils.py MusicGen hooks
+audio_utils.py Audio processing
+dataset_utils.py T5 data loading
+visualization_utils.py Plotting
 ```
 
-### 🧪 Experiments
+### Experiments
 ```
 experiments/
-├── extract_t5_embeddings_at_scale.py   ← Phase 0 (done)
-├── train_sae_on_t5_embeddings.py       ← Phase 1 (ready)
-└── analyze_sae_features.py             ← Phase 1 (ready)
+extract_t5_embeddings_at_scale.py Phase 0 (done)
+train_sae_on_t5_embeddings.py Phase 1 (ready)
+analyze_sae_features.py Phase 1 (ready)
 ```
 
-### 📊 Data & Results
+### Data & Results
 ```
 results/
-├── t5_embeddings/                      ← Phase 0 output ✅
-│   ├── embeddings.npy
-│   ├── labels.npy
-│   ├── metadata.json
-│   └── emotion_clustering_pca.png
-│
-├── sae_training/                       ← Phase 1 output (TBD)
-└── sae_analysis/                       ← Phase 1 analysis (TBD)
+t5_embeddings/ Phase 0 output 
+embeddings.npy
+labels.npy
+metadata.json
+emotion_clustering_pca.png
+
+sae_training/ Phase 1 output (TBD)
+sae_analysis/ Phase 1 analysis (TBD)
 ```
 
 ---
 
-## 🔍 Search by Keyword
+## Search by Keyword
 
 ### "How do I train the SAE?"
-→ [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) - Quick start guide
-→ [experiments/train_sae_on_t5_embeddings.py](experiments/train_sae_on_t5_embeddings.py) - Training script
+[PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) - Quick start guide
+[experiments/train_sae_on_t5_embeddings.py](experiments/train_sae_on_t5_embeddings.py) - Training script
 
 ### "What did we discover in Phase 0?"
-→ [PHASE0_TO_PHASE1_SUMMARY.md](PHASE0_TO_PHASE1_SUMMARY.md) - Complete summary
-→ Results: T5 embeddings encode emotions (96% accuracy)
+[PHASE0_TO_PHASE1_SUMMARY.md](PHASE0_TO_PHASE1_SUMMARY.md) - Complete summary
+Results: T5 embeddings encode emotions (96% accuracy)
 
 ### "What are monosemantic features?"
-→ [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Section: Key References
-→ [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Why SAEs Find Interpretable Features
+[PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Section: Key References
+[SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Why SAEs Find Interpretable Features
 
 ### "How does the SAE work?"
-→ [src/models/sparse_autoencoder.py](src/models/sparse_autoencoder.py) - Implementation with comments
-→ [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Sparse Autoencoder
+[src/models/sparse_autoencoder.py](src/models/sparse_autoencoder.py) - Implementation with comments
+[SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Sparse Autoencoder
 
 ### "What's the timeline?"
-→ [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Week-by-week plan
-→ [README.md](README.md) - Overall timeline
+[PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Week-by-week plan
+[README.md](README.md) - Overall timeline
 
 ### "Where is the data?"
-→ `results/t5_embeddings/` - Phase 0 data (100 samples)
-→ [experiments/extract_t5_embeddings_at_scale.py](experiments/extract_t5_embeddings_at_scale.py) - How it was created
+`results/t5_embeddings/` - Phase 0 data (100 samples)
+[experiments/extract_t5_embeddings_at_scale.py](experiments/extract_t5_embeddings_at_scale.py) - How it was created
 
 ### "What are the success criteria?"
-→ [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Section: Success Criteria
-→ [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Success Checklist
+[PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Section: Success Criteria
+[SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Success Checklist
 
 ### "How to troubleshoot errors?"
-→ [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) - Section: Troubleshooting
-→ [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Section: Potential Issues & Solutions
-→ [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Common Issues & Solutions
+[PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) - Section: Troubleshooting
+[PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) - Section: Potential Issues & Solutions
+[SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) - Section: Common Issues & Solutions
 
 ---
 
-## 📊 Key Metrics Summary
+## Key Metrics Summary
 
 ### Phase 0 Results (T5 Embeddings)
 - **Classification accuracy**: 96%
@@ -178,7 +178,7 @@ results/
 
 ---
 
-## ⚡ Quick Commands
+## Quick Commands
 
 ```bash
 # Navigate to project
@@ -202,35 +202,35 @@ python3 src/utils/dataset_utils.py
 
 ---
 
-## 🎯 Current Status
+## Current Status
 
 ```
-Phase 0: Foundation            [████████████████████] 100% ✅
-Phase 1: SAE Training          [░░░░░░░░░░░░░░░░░░░░]   0% 🚀 READY
-Phase 2: Activation Steering   [░░░░░░░░░░░░░░░░░░░░]   0%
-Phase 3: Causal Analysis       [░░░░░░░░░░░░░░░░░░░░]   0%
+Phase 0: Foundation [] 100% 
+Phase 1: SAE Training [] 0% READY
+Phase 2: Activation Steering [] 0%
+Phase 3: Causal Analysis [] 0%
 ```
 
 **Next Action**: Run `python3 experiments/train_sae_on_t5_embeddings.py`
 
 ---
 
-## 🏆 Major Achievements
+## Major Achievements
 
 ### Phase 0 Discovery
-✅ **Found where emotions are encoded**: T5 text embeddings, not transformer layers
-✅ **96% classification accuracy**: Strong, reproducible signal
-✅ **Built complete infrastructure**: Ready for Phase 1
+**Found where emotions are encoded**: T5 text embeddings, not transformer layers
+**96% classification accuracy**: Strong, reproducible signal
+**Built complete infrastructure**: Ready for Phase 1
 
 ### System Implementation
-✅ **Sparse Autoencoder**: 768→6144→768 architecture tested
-✅ **Training pipeline**: Full training loop with early stopping
-✅ **Analysis tools**: Feature selectivity and interpretation
-✅ **Documentation**: Complete guides for all use cases
+**Sparse Autoencoder**: 7686144768 architecture tested
+**Training pipeline**: Full training loop with early stopping
+**Analysis tools**: Feature selectivity and interpretation
+**Documentation**: Complete guides for all use cases
 
 ---
 
-## 📞 Need Help?
+## Need Help?
 
 ### For Code Issues
 1. Check: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) - Troubleshooting section
@@ -249,7 +249,7 @@ Phase 3: Causal Analysis       [░░░░░░░░░░░░░░░░
 
 ---
 
-## 🔗 External Resources
+## External Resources
 
 ### Papers
 - Bricken et al. (2023) - SAE methodology
@@ -268,6 +268,6 @@ Phase 3: Causal Analysis       [░░░░░░░░░░░░░░░░
 ---
 
 **Last Updated**: October 10, 2024
-**Status**: Phase 1 Ready to Begin 🚀
+**Status**: Phase 1 Ready to Begin 
 
 **Start Here**: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md)

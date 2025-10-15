@@ -18,17 +18,17 @@ Understanding why neural networks are hard to interpret.
 - How do features interfere with each other in activation space?
 
 **Resources**:
-- 📝 [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html) (Anthropic, 2022)
-  - **Time**: 2-3 hours reading + experiments
-  - **Focus**: Understand Figure 1, 3, 8 deeply
-- 🎓 [ARENA 3.1: Superposition exercises](https://arena3-chapter1-transformer-interp.streamlit.app/[1.1]_Toy_Models_of_Superposition)
-  - **Time**: 4-6 hours coding
-  - **Deliverable**: Complete notebook with your own experiments
+- [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html) (Anthropic, 2022)
+- **Time**: 2-3 hours reading + experiments
+- **Focus**: Understand Figure 1, 3, 8 deeply
+- [ARENA 3.1: Superposition exercises](https://arena3-chapter1-transformer-interp.streamlit.app/[1.1]_Toy_Models_of_Superposition)
+- **Time**: 4-6 hours coding
+- **Deliverable**: Complete notebook with your own experiments
 
 **Success Criteria**:
-- ✅ Can explain why `d_model` neurons can represent > `d_model` features
-- ✅ Understand ReLU's role in superposition
-- ✅ Completed ARENA exercises with >80% understanding
+- Can explain why `d_model` neurons can represent > `d_model` features
+- Understand ReLU's role in superposition
+- Completed ARENA exercises with >80% understanding
 
 ---
 
@@ -41,20 +41,20 @@ The main tool for disentangling superposition.
 - Why do we need SAEs to be "overcomplete" (more features than input dimensions)?
 
 **Resources**:
-- 📝 [Sparse Autoencoders Find Highly Interpretable Features in Language Models](https://arxiv.org/abs/2309.08600) (Anthropic, 2023)
-  - **Time**: 3-4 hours
-  - **Focus**: Section 3 (Method), Figure 2, Figure 5
-- 📝 [An Intuitive Explanation of Sparse Autoencoders](https://adamkarvonen.github.io/machine_learning/2024/06/11/sae-intuitions.html) (Adam Karvonen, 2024)
-  - **Time**: 1 hour
-  - **Very accessible**: Start here before the full paper
-- 🎓 [ARENA 3.2: Sparse Autoencoders exercises](https://arena3-chapter1-transformer-interp.streamlit.app/[1.2]_Intro_to_SAEs)
-  - **Time**: 6-8 hours
-  - **Deliverable**: Train your own SAE on a tiny language model
+- [Sparse Autoencoders Find Highly Interpretable Features in Language Models](https://arxiv.org/abs/2309.08600) (Anthropic, 2023)
+- **Time**: 3-4 hours
+- **Focus**: Section 3 (Method), Figure 2, Figure 5
+- [An Intuitive Explanation of Sparse Autoencoders](https://adamkarvonen.github.io/machine_learning/2024/06/11/sae-intuitions.html) (Adam Karvonen, 2024)
+- **Time**: 1 hour
+- **Very accessible**: Start here before the full paper
+- [ARENA 3.2: Sparse Autoencoders exercises](https://arena3-chapter1-transformer-interp.streamlit.app/[1.2]_Intro_to_SAEs)
+- **Time**: 6-8 hours
+- **Deliverable**: Train your own SAE on a tiny language model
 
 **Success Criteria**:
-- ✅ Can explain the SAE training objective: reconstruction loss + L1 sparsity
-- ✅ Understand what "monosemantic" means with concrete examples
-- ✅ Trained a working SAE and visualized features
+- Can explain the SAE training objective: reconstruction loss + L1 sparsity
+- Understand what "monosemantic" means with concrete examples
+- Trained a working SAE and visualized features
 
 ---
 
@@ -67,17 +67,17 @@ The theoretical foundation for activation steering.
 - How does this relate to controlling model behavior?
 
 **Resources**:
-- 📝 [The Linear Representation Hypothesis and the Geometry of Large Language Models](https://arxiv.org/abs/2311.03658) (Park et al., 2024)
-  - **Time**: 2-3 hours (read intro + Section 2, skim proofs)
-  - **Focus**: Understand Figures 1-3, skip heavy math for now
-- 📝 [Actually, Othello-GPT Has A Linear Emergent World Representation](https://www.neelnanda.io/mechanistic-interpretability/othello) (Neel Nanda, 2023)
-  - **Time**: 2 hours
-  - **Concrete example**: See LRH in action on a board game model
+- [The Linear Representation Hypothesis and the Geometry of Large Language Models](https://arxiv.org/abs/2311.03658) (Park et al., 2024)
+- **Time**: 2-3 hours (read intro + Section 2, skim proofs)
+- **Focus**: Understand Figures 1-3, skip heavy math for now
+- [Actually, Othello-GPT Has A Linear Emergent World Representation](https://www.neelnanda.io/mechanistic-interpretability/othello) (Neel Nanda, 2023)
+- **Time**: 2 hours
+- **Concrete example**: See LRH in action on a board game model
 
 **Success Criteria**:
-- ✅ Understand the claim: "concepts = linear directions"
-- ✅ Can explain why this matters for interpretability
-- ✅ Know the difference between "representation" and "steering"
+- Understand the claim: "concepts = linear directions"
+- Can explain why this matters for interpretability
+- Know the difference between "representation" and "steering"
 
 ---
 
@@ -90,17 +90,17 @@ How to control model behavior by editing activations.
 - How do we evaluate if steering worked?
 
 **Resources**:
-- 📝 [Steering Language Models With Activation Engineering](https://arxiv.org/abs/2308.10248) (2023)
-  - **Time**: 2 hours
-  - **Focus**: Section 2 (Method), Figure 1
-- 📝 [Activation Addition: Steering Language Models Without Optimization](https://arxiv.org/abs/2308.10248) (Turner et al., 2023)
-  - **Time**: 1-2 hours
-  - **Focus**: Algorithm 1, understand the simplicity of the method
+- [Steering Language Models With Activation Engineering](https://arxiv.org/abs/2308.10248) (2023)
+- **Time**: 2 hours
+- **Focus**: Section 2 (Method), Figure 1
+- [Activation Addition: Steering Language Models Without Optimization](https://arxiv.org/abs/2308.10248) (Turner et al., 2023)
+- **Time**: 1-2 hours
+- **Focus**: Algorithm 1, understand the simplicity of the method
 
 **Success Criteria**:
-- ✅ Understand the formula: `modified_activation = base_activation + α * steering_vector`
-- ✅ Know how to compute a steering vector from contrastive examples
-- ✅ Understand evaluation: CLAP scores, classifiers, human eval
+- Understand the formula: `modified_activation = base_activation + α * steering_vector`
+- Know how to compute a steering vector from contrastive examples
+- Understand evaluation: CLAP scores, classifiers, human eval
 
 ---
 
@@ -120,23 +120,23 @@ How to control model behavior by editing activations.
 **Goal**: Know MusicGen's architecture deeply enough to probe it.
 
 #### 1. **Read the MusicGen Paper**
-- 📝 [MusicGen: Simple and Controllable Music Generation](https://arxiv.org/abs/2306.05284) (Copet et al., 2023)
-  - **Time**: 3-4 hours
-  - **Focus**:
-    - Section 2 (Model architecture)
-    - Figure 1 (understand the autoregressive generation)
-    - Section 3.1 (EnCodec tokenization)
+- [MusicGen: Simple and Controllable Music Generation](https://arxiv.org/abs/2306.05284) (Copet et al., 2023)
+- **Time**: 3-4 hours
+- **Focus**:
+- Section 2 (Model architecture)
+- Figure 1 (understand the autoregressive generation)
+- Section 3.1 (EnCodec tokenization)
 
 **Key Concepts**:
-- **EnCodec**: Compresses audio → discrete tokens (like words in text)
+- **EnCodec**: Compresses audio discrete tokens (like words in text)
 - **Transformer Decoder**: Autoregressively generates tokens
 - **Delayed Pattern**: Generates multiple codebook levels in parallel
 - **Text Conditioning**: T5 embeddings guide generation
 
 **Success Criteria**:
-- ✅ Can draw the architecture from memory
-- ✅ Understand: audio → EnCodec tokens → Transformer → audio
-- ✅ Know where to extract activations (which layers, which tokens)
+- Can draw the architecture from memory
+- Understand: audio EnCodec tokens Transformer audio
+- Know where to extract activations (which layers, which tokens)
 
 ---
 
@@ -147,12 +147,12 @@ How to control model behavior by editing activations.
 # Goal: Generate your first music samples
 from audiocraft.models import MusicGen
 
-model = MusicGen.get_pretrained('facebook/musicgen-large')  # 3.3B model
+model = MusicGen.get_pretrained('facebook/musicgen-large') # 3.3B model
 prompts = [
-    "happy upbeat electronic dance music",
-    "sad melancholic piano piece",
-    "energetic rock guitar solo",
-    "calm ambient meditation music"
+"happy upbeat electronic dance music",
+"sad melancholic piano piece",
+"energetic rock guitar solo",
+"calm ambient meditation music"
 ]
 samples = model.generate(prompts, progress=True)
 ```
@@ -170,17 +170,17 @@ import torch
 activations = {}
 
 def get_activation(name):
-    def hook(model, input, output):
-        activations[name] = output.detach()
-    return hook
+def hook(model, input, output):
+activations[name] = output.detach()
+return hook
 
 # Register hooks
-for i in [0, 6, 12, 18, 24]:  # Sample layers
-    model.lm.layers[i].register_forward_hook(get_activation(f'layer_{i}'))
+for i in [0, 6, 12, 18, 24]: # Sample layers
+model.lm.layers[i].register_forward_hook(get_activation(f'layer_{i}'))
 
 # Generate and capture activations
 output = model.generate(["happy music"], progress=True)
-print(activations['layer_12'].shape)  # Understand the tensor shape
+print(activations['layer_12'].shape) # Understand the tensor shape
 ```
 
 **Deliverables**:
@@ -203,7 +203,7 @@ print(activations['layer_12'].shape)  # Understand the tensor shape
 ### Week 3-4 Deliverable
 **Technical Report** (2-3 pages):
 1. MusicGen architecture diagram (hand-drawn or digital)
-2. Summary of generation process: text → T5 → conditioning → tokens → audio
+2. Summary of generation process: text T5 conditioning tokens audio
 3. Activation extraction code (annotated)
 4. Initial observations: Do activations look different for happy vs. sad music?
 
@@ -226,11 +226,11 @@ print(activations['layer_12'].shape)  # Understand the tensor shape
 - **Script**: `scripts/download_deam.py`
 
 #### 3. **Map to Discrete Emotions**
-- **Valence + Arousal → 4 quadrants**:
-  - High valence, High arousal → **Happy/Energetic**
-  - High valence, Low arousal → **Calm/Peaceful**
-  - Low valence, High arousal → **Angry/Tense**
-  - Low valence, Low arousal → **Sad/Melancholic**
+- **Valence + Arousal 4 quadrants**:
+- High valence, High arousal **Happy/Energetic**
+- High valence, Low arousal **Calm/Peaceful**
+- Low valence, High arousal **Angry/Tense**
+- Low valence, Low arousal **Sad/Melancholic**
 
 **Deliverable**: `data/processed/emotion_labeled_dataset.csv`
 
@@ -270,38 +270,38 @@ Use `librosa` to extract features for later causal analysis:
 #### Must-Read (These directly apply to your project)
 
 1. **"Discovering and Steering Interpretable Concepts in Large Generative Music Models"** (Singh et al., May 2025)
-   - **Why**: This is YOUR exact research direction
-   - **Time**: 4-5 hours
-   - **Task**: Implement their SAE evaluation pipeline (if code available)
+- **Why**: This is YOUR exact research direction
+- **Time**: 4-5 hours
+- **Task**: Implement their SAE evaluation pipeline (if code available)
 
 2. **"Fine-Grained control over Music Generation with Activation Steering"** (June 2025)
-   - **Why**: Direct precedent for Phase 3
-   - **Time**: 3 hours
-   - **Task**: Understand their CLAP evaluation method
+- **Why**: Direct precedent for Phase 3
+- **Time**: 3 hours
+- **Task**: Understand their CLAP evaluation method
 
 3. **"Sparse Autoencoders Make Audio Foundation Models more Explainable"** (Sept 2025)
-   - **Why**: SAEs for audio (not just text!)
-   - **Time**: 3 hours
-   - **Task**: Compare to your planned approach
+- **Why**: SAEs for audio (not just text!)
+- **Time**: 3 hours
+- **Task**: Compare to your planned approach
 
 #### Important Context
 
 4. **"Measuring the Reliability of Causal Probing Methods"** (Aug 2024)
-   - **Why**: Avoid spurious findings in Phase 2
-   - **Time**: 2-3 hours
-   - **Focus**: Completeness & selectivity metrics
+- **Why**: Avoid spurious findings in Phase 2
+- **Time**: 2-3 hours
+- **Focus**: Completeness & selectivity metrics
 
 5. **EACL 2024 Tutorial: "Transformer-specific Interpretability"**
-   - **Why**: Causal intervention techniques
-   - **Time**: 4-5 hours
-   - **Task**: Run their notebooks
+- **Why**: Causal intervention techniques
+- **Time**: 4-5 hours
+- **Task**: Run their notebooks
 
 #### Background (Skim for now, deep-read when needed)
 
 6. Music perception neuroscience papers:
-   - "Live music stimulates the affective brain..." (PNAS, 2024)
-   - "On joy and sorrow: Neuroimaging meta-analyses..." (MIT Press, 2024)
-   - **Why**: Ground truth for human causal pathways
+- "Live music stimulates the affective brain..." (PNAS, 2024)
+- "On joy and sorrow: Neuroimaging meta-analyses..." (MIT Press, 2024)
+- **Why**: Ground truth for human causal pathways
 
 ---
 
@@ -320,12 +320,12 @@ Use `librosa` to extract features for later causal analysis:
 **Due**: End of Week 8
 
 **Contents**:
-1. ✅ Completed ARENA exercises (code + writeups)
-2. ✅ MusicGen infrastructure working (can generate + extract activations)
-3. ✅ Datasets prepared and documented
-4. ✅ Literature review complete
-5. ✅ Research questions refined based on literature
-6. ✅ Phase 1 experimental plan detailed
+1. Completed ARENA exercises (code + writeups)
+2. MusicGen infrastructure working (can generate + extract activations)
+3. Datasets prepared and documented
+4. Literature review complete
+5. Research questions refined based on literature
+6. Phase 1 experimental plan detailed
 
 **Success Criteria**:
 - Can explain mechanistic interpretability concepts to a peer

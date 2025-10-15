@@ -4,29 +4,29 @@ Congratulations on setting up your MusicGen interpretability research project! T
 
 ---
 
-## ✅ What's Been Set Up
+## What's Been Set Up
 
 Your project now has:
 
 1. **Complete directory structure** for organizing code, data, and results
 2. **Comprehensive documentation**:
-   - [README.md](README.md) - Project overview
-   - [QUICKSTART.md](QUICKSTART.md) - Installation guide
-   - [docs/phase0_roadmap.md](docs/phase0_roadmap.md) - Detailed 8-week learning plan
+- [README.md](README.md) - Project overview
+- [QUICKSTART.md](QUICKSTART.md) - Installation guide
+- [docs/phase0_roadmap.md](docs/phase0_roadmap.md) - Detailed 8-week learning plan
 3. **Installation scripts**:
-   - `scripts/setup_environment.py` - Check system requirements
-   - `scripts/check_gpu.py` - Verify GPU setup
-   - `scripts/download_models.py` - Download MusicGen models
-   - `scripts/prepare_datasets.py` - Prepare emotion-labeled datasets
+- `scripts/setup_environment.py` - Check system requirements
+- `scripts/check_gpu.py` - Verify GPU setup
+- `scripts/download_models.py` - Download MusicGen models
+- `scripts/prepare_datasets.py` - Prepare emotion-labeled datasets
 4. **Core utilities**:
-   - `src/utils/activation_utils.py` - Extract and analyze activations
-   - `src/utils/audio_utils.py` - Audio processing and feature extraction
-   - `src/utils/visualization_utils.py` - Plotting and visualization
+- `src/utils/activation_utils.py` - Extract and analyze activations
+- `src/utils/audio_utils.py` - Audio processing and feature extraction
+- `src/utils/visualization_utils.py` - Plotting and visualization
 5. **Dependencies**: `requirements.txt` with all necessary packages
 
 ---
 
-## 📋 Your Next Steps
+## Your Next Steps
 
 ### Step 1: Verify Your Environment (5 minutes)
 
@@ -36,9 +36,9 @@ python3 scripts/setup_environment.py
 ```
 
 This will verify:
-- ✅ Python 3.9+
-- ✅ FFmpeg (needed for audio processing)
-- ✅ Directory structure
+- Python 3.9+
+- FFmpeg (needed for audio processing)
+- Directory structure
 
 If FFmpeg is missing:
 - **macOS**: `brew install ffmpeg`
@@ -52,7 +52,7 @@ If FFmpeg is missing:
 ```bash
 # Create a virtual environment (recommended)
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate # On Windows: venv\Scripts\activate
 
 # Install all packages
 pip install -r requirements.txt
@@ -84,12 +84,12 @@ This will show:
 
 **Expected output** (example):
 ```
-✅ CUDA GPU detected
-   GPU 0: NVIDIA RTX 4090
-   - VRAM: 24.00 GB
+CUDA GPU detected
+GPU 0: NVIDIA RTX 4090
+- VRAM: 24.00 GB
 
-   Recommendations:
-   ✅ Can run MusicGen Large (3.3B) ← Your goal!
+Recommendations:
+Can run MusicGen Large (3.3B) Your goal!
 ```
 
 ---
@@ -124,21 +124,21 @@ from audiocraft.models import MusicGen
 from audiocraft.data.audio import audio_write
 import torch
 
-print("🎵 Testing MusicGen Large (3.3B)...")
+print(" Testing MusicGen Large (3.3B)...")
 print()
 
 # Load model
 print("Loading model (this may take a few minutes)...")
 model = MusicGen.get_pretrained('facebook/musicgen-large')
-model.set_generation_params(duration=8)  # 8 seconds
-print("✅ Model loaded!")
+model.set_generation_params(duration=8) # 8 seconds
+print(" Model loaded!")
 print()
 
 # Generate music
 print("Generating music samples...")
 descriptions = [
-    "happy upbeat electronic dance music",
-    "sad melancholic piano ballad"
+"happy upbeat electronic dance music",
+"sad melancholic piano ballad"
 ]
 
 wav = model.generate(descriptions)
@@ -146,18 +146,18 @@ wav = model.generate(descriptions)
 # Save
 print("Saving audio files...")
 for idx, one_wav in enumerate(wav):
-    audio_write(
-        f'results/test_{idx}',
-        one_wav.cpu(),
-        model.sample_rate,
-        strategy="loudness"
-    )
+audio_write(
+f'results/test_{idx}',
+one_wav.cpu(),
+model.sample_rate,
+strategy="loudness"
+)
 
 print()
-print("✅ Test complete!")
-print("   Check results/test_0.wav and results/test_1.wav")
+print(" Test complete!")
+print(" Check results/test_0.wav and results/test_1.wav")
 print()
-print("🎉 Everything is working! You're ready to start research.")
+print(" Everything is working! You're ready to start research.")
 ```
 
 Run it:
@@ -192,7 +192,7 @@ from audiocraft.models import MusicGen
 from src.utils.activation_utils import ActivationExtractor
 import torch
 
-print("🔬 Testing activation extraction...")
+print(" Testing activation extraction...")
 print()
 
 # Load model
@@ -213,18 +213,18 @@ wav = extractor.generate(prompts)
 activations = extractor.get_activations()
 
 print()
-print("✅ Captured activations:")
+print(" Captured activations:")
 for name, act in activations.items():
-    print(f"   {name}: {act.shape}")
-    # Expected: [batch_size, sequence_length, d_model]
-    # For MusicGen Large: d_model = 2048
+print(f" {name}: {act.shape}")
+# Expected: [batch_size, sequence_length, d_model]
+# For MusicGen Large: d_model = 2048
 
 # Save for later analysis
 extractor.save_activations('results/first_activations.pt')
 
 print()
-print("🎉 Activation extraction working!")
-print("   Saved to: results/first_activations.pt")
+print(" Activation extraction working!")
+print(" Saved to: results/first_activations.pt")
 ```
 
 Run it:
@@ -236,7 +236,7 @@ This confirms you can extract internal representations from MusicGen!
 
 ---
 
-## 🎓 What to Do Next
+## What to Do Next
 
 ### Option A: Start Learning (Recommended)
 
@@ -263,7 +263,7 @@ If you prefer hands-on learning:
 
 ---
 
-## 📚 Key Resources
+## Key Resources
 
 ### Documentation in This Project
 - [README.md](README.md) - Full project overview
@@ -289,28 +289,28 @@ If you prefer hands-on learning:
 
 ---
 
-## 🎯 Your Research Goal
+## Your Research Goal
 
 **Core Question**: Do music generation models "understand" emotion, or do they just correlate patterns?
 
 **How You'll Answer It**:
 
 1. **Phase 1** (Months 3-4): Does MusicGen build geometric representations of emotion?
-   - Extract activations, train SAEs, analyze clustering
+- Extract activations, train SAEs, analyze clustering
 
 2. **Phase 2** (Months 5-6): Does it use human-like causal pathways?
-   - Causal probing: tempo → energy → emotion
-   - Compare to neuroscience findings
+- Causal probing: tempo energy emotion
+- Compare to neuroscience findings
 
 3. **Phase 3** (Months 7-9): Can we control emotion through activation steering?
-   - If steering produces coherent music → model "understands"
-   - If not → just pattern matching
+- If steering produces coherent music model "understands"
+- If not just pattern matching
 
 **Either result is publishable** - the question itself is novel!
 
 ---
 
-## 🚀 First Research Task
+## First Research Task
 
 Here's a concrete first experiment (after setup):
 
@@ -328,7 +328,7 @@ Here's a concrete first experiment (after setup):
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### "CUDA out of memory"
 - Use smaller model: `musicgen-medium` (1.5B) or `musicgen-small` (300M)
@@ -351,7 +351,7 @@ pip install git+https://github.com/facebookresearch/audiocraft.git
 
 ---
 
-## 💡 Tips for Success
+## Tips for Success
 
 1. **Take your time** - Understanding > speed
 2. **Document everything** - Keep a research journal
@@ -362,7 +362,7 @@ pip install git+https://github.com/facebookresearch/audiocraft.git
 
 ---
 
-## 🎉 You're Ready!
+## You're Ready!
 
 Everything is set up for serious research. The infrastructure is in place - now it's time to explore!
 
@@ -381,4 +381,4 @@ python3 test_activations.py
 
 ---
 
-Good luck with your research! 🎵🔬🎉
+Good luck with your research! 

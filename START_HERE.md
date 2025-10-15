@@ -11,8 +11,8 @@
 ### 1. Install Dependencies
 ```bash
 cd "/Users/lending/Documents/AI PRJ/MusicGen"
-source venv/bin/activate  # Already created
-pip install -r requirements.txt  # Already installed
+source venv/bin/activate # Already created
+pip install -r requirements.txt # Already installed
 ```
 
 ### 2. Test Everything Works
@@ -21,7 +21,7 @@ pip install -r requirements.txt  # Already installed
 python3 test_fixed_extractor.py
 
 # Expected output:
-# ✅ SUCCESS: Emotions are represented differently!
+# SUCCESS: Emotions are represented differently!
 # Cosine similarity (layer 12): 0.9461
 ```
 
@@ -30,7 +30,7 @@ python3 test_fixed_extractor.py
 jupyter notebook notebooks/00_quick_test.ipynb
 ```
 
-**⚠️ IMPORTANT**: The notebook needs updating to use `concatenate=True` - see "Known Issues" below.
+**️ IMPORTANT**: The notebook needs updating to use `concatenate=True` - see "Known Issues" below.
 
 ---
 
@@ -38,32 +38,32 @@ jupyter notebook notebooks/00_quick_test.ipynb
 
 ```
 MusicGen/
-├── START_HERE.md                    ← You are here
-├── README.md                         ← Project overview
-├── PHASE0_COMPLETE_PLAN.md          ← Your action plan (3-4 weeks)
-│
-├── src/utils/                        ← Core utilities
-│   ├── activation_utils.py          ← Extract activations (FIXED)
-│   ├── audio_utils.py               ← Audio processing
-│   └── visualization_utils.py       ← Plotting
-│
-├── scripts/                          ← Setup scripts
-│   ├── setup_environment.py         ← Check requirements
-│   ├── check_gpu.py                 ← GPU verification
-│   ├── download_models.py           ← Download MusicGen
-│   └── prepare_datasets.py          ← Dataset prep
-│
-├── test_fixed_extractor.py          ← Validates activation extraction
-├── debug_activation_extraction.py   ← Diagnostic tool
-│
-├── notebooks/
-│   └── 00_quick_test.ipynb          ← Interactive exploration
-│
-├── docs/
-│   └── phase0_roadmap.md            ← 8-week learning plan
-│
-├── results/                          ← Generated audio & data
-└── archive/                          ← Old documentation
+START_HERE.md You are here
+README.md Project overview
+PHASE0_COMPLETE_PLAN.md Your action plan (3-4 weeks)
+
+src/utils/ Core utilities
+activation_utils.py Extract activations (FIXED)
+audio_utils.py Audio processing
+visualization_utils.py Plotting
+
+scripts/ Setup scripts
+setup_environment.py Check requirements
+check_gpu.py GPU verification
+download_models.py Download MusicGen
+prepare_datasets.py Dataset prep
+
+test_fixed_extractor.py Validates activation extraction
+debug_activation_extraction.py Diagnostic tool
+
+notebooks/
+00_quick_test.ipynb Interactive exploration
+
+docs/
+phase0_roadmap.md 8-week learning plan
+
+results/ Generated audio & data
+archive/ Old documentation
 ```
 
 ---
@@ -79,10 +79,10 @@ Your activation extraction was capturing only **1 of 459 timesteps** (last one o
 **Fixed** `src/utils/activation_utils.py` to capture **all timesteps**:
 ```python
 # Before (WRONG):
-self.activations[name] = activation  # Overwrites each time
+self.activations[name] = activation # Overwrites each time
 
 # After (CORRECT):
-self.activations[name].append(activation)  # Stores all timesteps
+self.activations[name].append(activation) # Stores all timesteps
 ```
 
 ### The Results
@@ -94,7 +94,7 @@ self.activations[name].append(activation)  # Stores all timesteps
 
 **Conclusion**: Emotions ARE differentiated! (5.4% difference, 80 dims strongly encode emotion)
 
-📖 **Full details**: [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
+**Full details**: [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
 
 ---
 
@@ -102,24 +102,24 @@ self.activations[name].append(activation)  # Stores all timesteps
 
 ### Week 1: Complete Validation
 1. **Update notebook** to use fixed extractor
-   ```python
-   # Change this line in notebook:
-   activations = extractor.get_activations(concatenate=True)  # ← Add this
-   ```
+```python
+# Change this line in notebook:
+activations = extractor.get_activations(concatenate=True) # Add this
+```
 
 2. **Test multiple emotion pairs**
-   - Not just happy/sad
-   - Try calm, energetic, angry, etc.
+- Not just happy/sad
+- Try calm, energetic, angry, etc.
 
 3. **Verify activation shapes**
-   ```python
-   # Should see: torch.Size([459, 2, 1, 2048])
-   #                         ^^^
-   #                      timesteps (not 1!)
-   ```
+```python
+# Should see: torch.Size([459, 2, 1, 2048])
+# ^^^
+# timesteps (not 1!)
+```
 
 ### Week 2: Generate Dataset
-📋 **Plan**: [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md#week-2-comprehensive-data-collection)
+**Plan**: [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md#week-2-comprehensive-data-collection)
 
 Generate 80 samples (20 per emotion × 4 emotions):
 ```bash
@@ -144,51 +144,51 @@ python3 experiments/01_generate_emotion_dataset.py
 ### Documentation (Read These)
 
 1. **[START_HERE.md](START_HERE.md)** (this file)
-   - Quick orientation
-   - What to do next
+- Quick orientation
+- What to do next
 
 2. **[README.md](README.md)**
-   - Project overview
-   - Research phases
-   - Success criteria
+- Project overview
+- Research phases
+- Success criteria
 
 3. **[PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md)**
-   - Detailed 3-4 week plan
-   - Week-by-week tasks
-   - Success criteria
+- Detailed 3-4 week plan
+- Week-by-week tasks
+- Success criteria
 
 4. **[ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)**
-   - Technical details of the bug
-   - Why 0.9999 → 0.9461 matters
-   - How to use fixed extractor
+- Technical details of the bug
+- Why 0.9999 0.9461 matters
+- How to use fixed extractor
 
 5. **[DEBUG_SUMMARY.md](DEBUG_SUMMARY.md)**
-   - Complete debug session log
-   - Lessons learned
-   - Methodology insights
+- Complete debug session log
+- Lessons learned
+- Methodology insights
 
 ### Code (Use These)
 
 6. **[src/utils/activation_utils.py](src/utils/activation_utils.py)**
-   - `ActivationExtractor` class (FIXED)
-   - Extract activations from MusicGen
-   - **Usage**:
-     ```python
-     extractor = ActivationExtractor(model, layers=[0, 12, 24])
-     wav = extractor.generate(["happy music"])
-     acts = extractor.get_activations(concatenate=True)  # ← IMPORTANT!
-     ```
+- `ActivationExtractor` class (FIXED)
+- Extract activations from MusicGen
+- **Usage**:
+```python
+extractor = ActivationExtractor(model, layers=[0, 12, 24])
+wav = extractor.generate(["happy music"])
+acts = extractor.get_activations(concatenate=True) # IMPORTANT!
+```
 
 7. **[test_fixed_extractor.py](test_fixed_extractor.py)**
-   - Validates the fix works
-   - Compares happy vs. sad music
-   - Analyzes temporal dynamics
-   - **Run this first** to verify setup
+- Validates the fix works
+- Compares happy vs. sad music
+- Analyzes temporal dynamics
+- **Run this first** to verify setup
 
 8. **[debug_activation_extraction.py](debug_activation_extraction.py)**
-   - Diagnostic tool
-   - Traces generation process
-   - Use if you suspect issues
+- Diagnostic tool
+- Traces generation process
+- Use if you suspect issues
 
 ---
 
@@ -216,7 +216,7 @@ sad_activations = extractor.get_activations(concatenate=True)
 - `experiments/03_layer_wise_analysis.py`
 - `experiments/04_umap_clustering.py`
 
-📋 **Templates**: See [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md#files-to-create-next-steps)
+**Templates**: See [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md#files-to-create-next-steps)
 
 ---
 
@@ -225,37 +225,37 @@ sad_activations = extractor.get_activations(concatenate=True)
 ### Research Methodology
 
 1. **Unexpected results = investigate immediately**
-   - You saw 0.9999 similarity → should have stopped
-   - Instead: moved on → wasted time
-   - Lesson: Debug before interpreting
+- You saw 0.9999 similarity should have stopped
+- Instead: moved on wasted time
+- Lesson: Debug before interpreting
 
 2. **Validate your tooling**
-   - Activation shapes were wrong: `[2, 1, 2048]` instead of `[459, 2, 1, 2048]`
-   - One simple check would have caught this
-   - Lesson: Always verify tensor shapes
+- Activation shapes were wrong: `[2, 1, 2048]` instead of `[459, 2, 1, 2048]`
+- One simple check would have caught this
+- Lesson: Always verify tensor shapes
 
 3. **N=1 is not evidence**
-   - One sample per emotion = anecdote
-   - Need 20+ for statistics
-   - Lesson: Design experiments with statistical power
+- One sample per emotion = anecdote
+- Need 20+ for statistics
+- Lesson: Design experiments with statistical power
 
 ### Technical Insights
 
 4. **MusicGen is autoregressive**
-   - Generates token-by-token (459 steps for 8s)
-   - Each forward pass processes one token
-   - Must capture ALL steps, not just the last
+- Generates token-by-token (459 steps for 8s)
+- Each forward pass processes one token
+- Must capture ALL steps, not just the last
 
 5. **Similarity = 0.9461 is good news**
-   - Not 0.99+ (no signal)
-   - Not 0.5 (too different, likely bug)
-   - 0.85-0.95 = meaningful differentiation
-   - Consistent with superposition theory
+- Not 0.99+ (no signal)
+- Not 0.5 (too different, likely bug)
+- 0.85-0.95 = meaningful differentiation
+- Consistent with superposition theory
 
 6. **Sparse encoding is expected**
-   - Only 8% of dims strongly differentiate
-   - Most neurons are polysemantic (encode multiple concepts)
-   - This validates your SAE plan for Phase 1
+- Only 8% of dims strongly differentiate
+- Most neurons are polysemantic (encode multiple concepts)
+- This validates your SAE plan for Phase 1
 
 ---
 
@@ -280,13 +280,13 @@ model.set_generation_params(duration=8)
 
 extractor = ActivationExtractor(model, layers=[12, 24, 36])
 wav = extractor.generate(["happy upbeat music"])
-acts = extractor.get_activations(concatenate=True)  # IMPORTANT!
+acts = extractor.get_activations(concatenate=True) # IMPORTANT!
 
 # Check shape
 print(acts['layer_12'].shape)
 # Should be: torch.Size([459, 2, 1, 2048])
-#                        ^^^
-#                     timesteps!
+# ^^^
+# timesteps!
 ```
 
 ### Compare Emotions
@@ -324,8 +324,8 @@ print(f"Similarity: {sim:.4f}")
 
 Before starting Phase 1, you must have:
 
-- [✅] Fixed activation extraction (DONE)
-- [✅] Validated fix (similarity now 0.9461) (DONE)
+- [] Fixed activation extraction (DONE)
+- [] Validated fix (similarity now 0.9461) (DONE)
 - [TODO] Generated 80-sample emotion dataset
 - [TODO] UMAP shows emotion clustering (silhouette > 0.2)
 - [TODO] Acoustic features validate labels (>80% match)

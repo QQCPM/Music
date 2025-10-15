@@ -1,12 +1,12 @@
 # Phase 1: Sparse Autoencoder Training - Complete Roadmap
 
-**Status**: READY TO BEGIN ✅
+**Status**: READY TO BEGIN 
 **Duration**: 2-3 weeks
 **Goal**: Train SAEs on T5 text embeddings to discover monosemantic emotion-encoding features
 
 ---
 
-## 🎯 Revised Research Focus
+## Revised Research Focus
 
 ### Key Discovery from Phase 0
 
@@ -14,19 +14,19 @@
 
 | Representation | Between-Emotion Similarity | Differentiation | Status |
 |----------------|---------------------------|-----------------|---------|
-| **T5 text embeddings** | 49.4% | **50% range** | ✅ **STRONG** |
-| **Transformer activations** | 94.6% | 5% range | ⚠️ WEAK |
+| **T5 text embeddings** | 49.4% | **50% range** | **STRONG** |
+| **Transformer activations** | 94.6% | 5% range | ️ WEAK |
 
 **Implication**: Phase 1 targets T5 embedding space (768-dim), not transformer layers (2048-dim)
 
 **Benefits**:
-- ✅ **Smaller dimensionality**: 768 vs 2048 (easier to train)
-- ✅ **Stronger signal**: 96% classification accuracy vs ~50%
-- ✅ **Clear interpretation**: Text encoding is more interpretable than transformer states
+- **Smaller dimensionality**: 768 vs 2048 (easier to train)
+- **Stronger signal**: 96% classification accuracy vs ~50%
+- **Clear interpretation**: Text encoding is more interpretable than transformer states
 
 ---
 
-## 📊 Phase 0 Results Summary
+## Phase 0 Results Summary
 
 ### Validation Completed
 
@@ -36,10 +36,10 @@
 - Within-emotion similarity: **0.560**
 - Between-emotion similarity: **0.494**
 - Differentiation: **6.6%** (statistically significant, p < 0.000001)
-- Linear probe accuracy: **96%** ✅
+- Linear probe accuracy: **96%** 
 - Emotion-encoding dimensions: Distributed across all 768 dimensions
 
-**Verdict**: ✅✅✅ **STRONG EMOTION ENCODING CONFIRMED**
+**Verdict**: **STRONG EMOTION ENCODING CONFIRMED**
 
 **Data Ready**:
 - `results/t5_embeddings/embeddings.npy` - 100 × 768 tensor
@@ -48,51 +48,51 @@
 
 ---
 
-## 🏗️ Phase 1 Infrastructure (COMPLETE)
+## ️ Phase 1 Infrastructure (COMPLETE)
 
-### ✅ Completed Components
+### Completed Components
 
 1. **Sparse Autoencoder Implementation**
-   - Location: `src/models/sparse_autoencoder.py`
-   - Architecture: 768 → 6144 → 768 (8x overcomplete)
-   - Features:
-     - L1 sparsity penalty
-     - Dead feature reinitialization
-     - Decoder weight normalization
-     - Feature tracking and metrics
-   - Status: ✅ Tested and working
+- Location: `src/models/sparse_autoencoder.py`
+- Architecture: 768 6144 768 (8x overcomplete)
+- Features:
+- L1 sparsity penalty
+- Dead feature reinitialization
+- Decoder weight normalization
+- Feature tracking and metrics
+- Status: Tested and working
 
 2. **Dataset Utilities**
-   - Location: `src/utils/dataset_utils.py`
-   - Features:
-     - T5 embedding loading
-     - Train/val/test splitting
-     - Data normalization and centering
-     - PyTorch DataLoader integration
-   - Status: ✅ Tested with 100 samples
+- Location: `src/utils/dataset_utils.py`
+- Features:
+- T5 embedding loading
+- Train/val/test splitting
+- Data normalization and centering
+- PyTorch DataLoader integration
+- Status: Tested with 100 samples
 
 3. **Training Pipeline**
-   - Location: `experiments/train_sae_on_t5_embeddings.py`
-   - Features:
-     - Full training loop with early stopping
-     - Validation and metrics logging
-     - Dead feature reinitialization
-     - Training curve visualization
-     - Checkpoint saving
-   - Status: ✅ Ready to run
+- Location: `experiments/train_sae_on_t5_embeddings.py`
+- Features:
+- Full training loop with early stopping
+- Validation and metrics logging
+- Dead feature reinitialization
+- Training curve visualization
+- Checkpoint saving
+- Status: Ready to run
 
 4. **Feature Analysis Tools**
-   - Location: `experiments/analyze_sae_features.py`
-   - Features:
-     - Feature selectivity computation
-     - Emotion-specific feature identification
-     - Activation pattern visualization
-     - Detailed statistics and reports
-   - Status: ✅ Ready for post-training analysis
+- Location: `experiments/analyze_sae_features.py`
+- Features:
+- Feature selectivity computation
+- Emotion-specific feature identification
+- Activation pattern visualization
+- Detailed statistics and reports
+- Status: Ready for post-training analysis
 
 ---
 
-## 📅 Week-by-Week Plan
+## Week-by-Week Plan
 
 ### Week 1: Initial SAE Training & Hyperparameter Search
 
@@ -113,10 +113,10 @@ python3 experiments/train_sae_on_t5_embeddings.py
 - Validation loss: Should decrease and plateau
 
 **Success criteria**:
-- ✅ Training completes without errors
-- ✅ Reconstruction loss < 0.02
-- ✅ L0 < 500 (< 10% of 6144 features active)
-- ✅ < 100 dead features at end of training
+- Training completes without errors
+- Reconstruction loss < 0.02
+- L0 < 500 (< 10% of 6144 features active)
+- < 100 dead features at end of training
 
 **Days 3-4: Hyperparameter Sweep**
 
@@ -133,8 +133,8 @@ Test different L1 coefficients to find optimal sparsity/reconstruction trade-off
 ```python
 # Edit train_sae_on_t5_embeddings.py CONFIG
 for l1 in [1e-3, 3e-3, 1e-2, 3e-4]:
-    CONFIG['l1_coefficient'] = l1
-    # Run training
+CONFIG['l1_coefficient'] = l1
+# Run training
 ```
 
 **Choose best model** based on:
@@ -156,9 +156,9 @@ python3 experiments/analyze_sae_features.py
 - Some features activate for specific emotion words (e.g., "joyful", "sad")
 
 **Week 1 Deliverable**:
-- ✅ Trained SAE model with good sparsity/reconstruction trade-off
-- ✅ Initial feature analysis showing emotion selectivity
-- ✅ Training curves and metrics saved
+- Trained SAE model with good sparsity/reconstruction trade-off
+- Initial feature analysis showing emotion selectivity
+- Training curves and metrics saved
 
 ---
 
@@ -180,30 +180,30 @@ Target: 400-500 prompts (100-125 per emotion)
 # - Different descriptive styles (adjectives, scenes, metaphors)
 
 emotions = {
-    'happy': [
-        # Instrumental
-        'happy piano melody',
-        'cheerful acoustic guitar',
-        'joyful orchestral piece',
+'happy': [
+# Instrumental
+'happy piano melody',
+'cheerful acoustic guitar',
+'joyful orchestral piece',
 
-        # Genre-based
-        'upbeat pop song',
-        'energetic dance music',
-        'bright jazz tune',
+# Genre-based
+'upbeat pop song',
+'energetic dance music',
+'bright jazz tune',
 
-        # Intensity
-        'subtly optimistic music',
-        'moderately cheerful tune',
-        'intensely jubilant celebration',
+# Intensity
+'subtly optimistic music',
+'moderately cheerful tune',
+'intensely jubilant celebration',
 
-        # Scene-based
-        'sunny day at the beach music',
-        'children playing in park',
-        'birthday party celebration',
+# Scene-based
+'sunny day at the beach music',
+'children playing in park',
+'birthday party celebration',
 
-        # ... 100+ total for happy
-    ],
-    # ... similar for sad, calm, energetic
+# ... 100+ total for happy
+],
+# ... similar for sad, calm, energetic
 }
 ```
 
@@ -213,8 +213,8 @@ Modify and run `extract_t5_embeddings_at_scale.py`:
 
 ```bash
 python3 experiments/extract_t5_embeddings_at_scale.py \
-    --output-dir results/t5_embeddings_500 \
-    --num-prompts 500
+--output-dir results/t5_embeddings_500 \
+--num-prompts 500
 ```
 
 **Expected results**:
@@ -239,9 +239,9 @@ python3 experiments/train_sae_on_t5_embeddings.py
 - More monosemantic features
 
 **Week 2 Deliverable**:
-- ✅ 500-prompt T5 embedding dataset
-- ✅ SAE trained on larger, more diverse dataset
-- ✅ Feature analysis showing improved interpretability
+- 500-prompt T5 embedding dataset
+- SAE trained on larger, more diverse dataset
+- Feature analysis showing improved interpretability
 
 ---
 
@@ -259,16 +259,16 @@ Create `experiments/inspect_features_manually.py`:
 
 # Example output:
 # Feature 42 (happy-selective, selectivity: 5.2x):
-#   Top activating prompts:
-#     - "joyful celebration music" (activation: 0.82)
-#     - "happy children playing" (activation: 0.78)
-#     - "cheerful upbeat melody" (activation: 0.75)
+# Top activating prompts:
+# - "joyful celebration music" (activation: 0.82)
+# - "happy children playing" (activation: 0.78)
+# - "cheerful upbeat melody" (activation: 0.75)
 #
-#   Low activating prompts:
-#     - "sad melancholic piano" (activation: 0.01)
-#     - "calm meditation ambient" (activation: 0.03)
+# Low activating prompts:
+# - "sad melancholic piano" (activation: 0.01)
+# - "calm meditation ambient" (activation: 0.03)
 #
-#   Interpretation: Encodes "JOYFUL CELEBRATION" concept
+# Interpretation: Encodes "JOYFUL CELEBRATION" concept
 ```
 
 **Goal**: Find 10-20 clearly interpretable features per emotion
@@ -317,52 +317,52 @@ Test if features are **causally important**:
 Document findings:
 
 1. **Summary**
-   - Number of interpretable features found
-   - Selectivity scores
-   - Example features with descriptions
+- Number of interpretable features found
+- Selectivity scores
+- Example features with descriptions
 
 2. **Validation Results**
-   - Causal intervention outcomes
-   - Stability across random seeds
-   - Generalization to new prompts
+- Causal intervention outcomes
+- Stability across random seeds
+- Generalization to new prompts
 
 3. **Comparison to Phase 0**
-   - Phase 0: Showed emotions ARE encoded (96% accuracy)
-   - Phase 1: Identified WHERE/HOW emotions are encoded (specific features)
+- Phase 0: Showed emotions ARE encoded (96% accuracy)
+- Phase 1: Identified WHERE/HOW emotions are encoded (specific features)
 
 4. **Next Steps for Phase 2**
-   - Use features for MusicGen activation steering
-   - Test if steering these features changes generated music
-   - Validate with acoustic analysis + human eval
+- Use features for MusicGen activation steering
+- Test if steering these features changes generated music
+- Validate with acoustic analysis + human eval
 
 **Week 3 Deliverable**:
-- ✅ 10-20 interpretable features per emotion
-- ✅ Causal validation of features
-- ✅ Stability and generalization tests passed
-- ✅ Phase 1 complete report
+- 10-20 interpretable features per emotion
+- Causal validation of features
+- Stability and generalization tests passed
+- Phase 1 complete report
 
 ---
 
-## 🎯 Success Criteria
+## Success Criteria
 
 ### Must Have (Go/No-Go for Phase 2)
 
-- ✅ **Reconstruction quality**: MSE < 0.01 on test set
-- ✅ **Sparsity**: L0 = 50-200 active features per sample
-- ✅ **Selectivity**: ≥50 features with selectivity > 2.0
-- ✅ **Interpretability**: ≥10 clearly interpretable features per emotion
-- ✅ **Causality**: Feature interventions change reconstruction in expected way
+- **Reconstruction quality**: MSE < 0.01 on test set
+- **Sparsity**: L0 = 50-200 active features per sample
+- **Selectivity**: ≥50 features with selectivity > 2.0
+- **Interpretability**: ≥10 clearly interpretable features per emotion
+- **Causality**: Feature interventions change reconstruction in expected way
 
 ### Nice to Have (Strengthens findings)
 
-- 🎁 **Monosemanticity**: Features activate for single, clear concept
-- 🎁 **Stability**: Similar features across different random seeds
-- 🎁 **Generalization**: Features transfer to unseen prompts
-- 🎁 **Compositionality**: Multiple emotion features can be combined
+- **Monosemanticity**: Features activate for single, clear concept
+- **Stability**: Similar features across different random seeds
+- **Generalization**: Features transfer to unseen prompts
+- **Compositionality**: Multiple emotion features can be combined
 
 ---
 
-## 🔧 Hyperparameters to Tune
+## Hyperparameters to Tune
 
 ### Critical Parameters
 
@@ -389,7 +389,7 @@ Document findings:
 
 ---
 
-## 📈 Expected Outcomes
+## Expected Outcomes
 
 ### Quantitative
 
@@ -416,7 +416,7 @@ Document findings:
 
 ---
 
-## 🚨 Potential Issues & Solutions
+## Potential Issues & Solutions
 
 ### Issue 1: Poor Reconstruction (MSE > 0.05)
 
@@ -428,9 +428,9 @@ Document findings:
 - Insufficient training
 
 **Solutions**:
-- ✅ Decrease `l1_coefficient` from 1e-3 to 3e-4
-- ✅ Increase `expansion_factor` from 8 to 12
-- ✅ Train for more epochs
+- Decrease `l1_coefficient` from 1e-3 to 3e-4
+- Increase `expansion_factor` from 8 to 12
+- Train for more epochs
 
 ---
 
@@ -443,8 +443,8 @@ Document findings:
 - ReLU not enforcing sparsity
 
 **Solutions**:
-- ✅ Increase `l1_coefficient` from 1e-3 to 3e-3 or 1e-2
-- ✅ Check activation statistics (should see clear 0/non-zero split)
+- Increase `l1_coefficient` from 1e-3 to 3e-3 or 1e-2
+- Check activation statistics (should see clear 0/non-zero split)
 
 ---
 
@@ -458,10 +458,10 @@ Document findings:
 - Dataset too small
 
 **Solutions**:
-- ✅ Decrease `l1_coefficient`
-- ✅ Decrease `dead_feature_threshold` to 50
-- ✅ Reinitialize more frequently (every 50 steps)
-- ✅ Scale up to 500-sample dataset
+- Decrease `l1_coefficient`
+- Decrease `dead_feature_threshold` to 50
+- Reinitialize more frequently (every 50 steps)
+- Scale up to 500-sample dataset
 
 ---
 
@@ -475,10 +475,10 @@ Document findings:
 - Superposition not fully resolved
 
 **Solutions**:
-- ✅ Increase sparsity (higher L1)
-- ✅ Increase model capacity (larger expansion factor)
-- ✅ Generate more diverse prompts (500+ samples)
-- ✅ Train longer to convergence
+- Increase sparsity (higher L1)
+- Increase model capacity (larger expansion factor)
+- Generate more diverse prompts (500+ samples)
+- Train longer to convergence
 
 ---
 
@@ -492,53 +492,53 @@ Document findings:
 - Insufficient samples
 
 **Solutions**:
-- ✅ Add more diverse prompts
-- ✅ Use larger train/val/test splits
-- ✅ Add weight decay regularization
-- ✅ Ensure prompts vary in style, not just emotion
+- Add more diverse prompts
+- Use larger train/val/test splits
+- Add weight decay regularization
+- Ensure prompts vary in style, not just emotion
 
 ---
 
-## 📚 Key References
+## Key References
 
 ### SAE Papers
 
 1. **Bricken et al., "Towards Monosemanticity: Decomposing Language Models With Dictionary Learning"** (Anthropic, 2023)
-   - Core SAE methodology
-   - L1 penalty + overcomplete architecture
-   - Feature interpretability evaluation
+- Core SAE methodology
+- L1 penalty + overcomplete architecture
+- Feature interpretability evaluation
 
 2. **Sharkey et al., "Taking Features out of Superposition with Sparse Autoencoders"** (2023)
-   - Theory of why SAEs work
-   - Relationship to superposition
-   - Scaling laws for SAE capacity
+- Theory of why SAEs work
+- Relationship to superposition
+- Scaling laws for SAE capacity
 
 3. **Cunningham et al., "Sparse Autoencoders Find Highly Interpretable Features in Language Models"** (Anthropic, 2023)
-   - Feature selectivity metrics
-   - Dead feature reinitialization
-   - Evaluation protocols
+- Feature selectivity metrics
+- Dead feature reinitialization
+- Evaluation protocols
 
 ### Interpretability Background
 
 4. **Elhage et al., "Toy Models of Superposition"** (Anthropic, 2022)
-   - Why neural nets compress features
-   - Why overcomplete SAEs help
+- Why neural nets compress features
+- Why overcomplete SAEs help
 
 5. **Park et al., "The Linear Representation Hypothesis"** (2024)
-   - Concepts as linear directions
-   - Theoretical foundation for feature interpretation
+- Concepts as linear directions
+- Theoretical foundation for feature interpretation
 
 ---
 
-## 🛠️ Implementation Checklist
+## ️ Implementation Checklist
 
 ### Before Starting
 
-- [x] ✅ Phase 0 complete and validated
-- [x] ✅ T5 embedding dataset ready (100 samples)
-- [x] ✅ SAE implementation tested
-- [x] ✅ Training pipeline tested
-- [x] ✅ Analysis tools ready
+- [x] Phase 0 complete and validated
+- [x] T5 embedding dataset ready (100 samples)
+- [x] SAE implementation tested
+- [x] Training pipeline tested
+- [x] Analysis tools ready
 
 ### Week 1
 
@@ -567,41 +567,41 @@ Document findings:
 
 ---
 
-## 📊 Deliverables
+## Deliverables
 
 ### Code
 
-- ✅ `src/models/sparse_autoencoder.py` - SAE implementation
-- ✅ `src/utils/dataset_utils.py` - Data loading utilities
-- ✅ `experiments/train_sae_on_t5_embeddings.py` - Training script
-- ✅ `experiments/analyze_sae_features.py` - Analysis script
-- 🔲 `experiments/generate_diverse_prompts.py` - Prompt generation
-- 🔲 `experiments/inspect_features_manually.py` - Feature interpretation
-- 🔲 `experiments/test_feature_causality.py` - Causal validation
+- `src/models/sparse_autoencoder.py` - SAE implementation
+- `src/utils/dataset_utils.py` - Data loading utilities
+- `experiments/train_sae_on_t5_embeddings.py` - Training script
+- `experiments/analyze_sae_features.py` - Analysis script
+- `experiments/generate_diverse_prompts.py` - Prompt generation
+- `experiments/inspect_features_manually.py` - Feature interpretation
+- `experiments/test_feature_causality.py` - Causal validation
 
 ### Data
 
-- ✅ `results/t5_embeddings/` - 100-sample dataset
-- 🔲 `results/t5_embeddings_500/` - 500-sample dataset
-- 🔲 `results/sae_training/` - Trained models and metrics
+- `results/t5_embeddings/` - 100-sample dataset
+- `results/t5_embeddings_500/` - 500-sample dataset
+- `results/sae_training/` - Trained models and metrics
 
 ### Documentation
 
-- ✅ `PHASE1_ROADMAP.md` - This document
-- 🔲 `PHASE1_WEEK1_REPORT.md` - Week 1 findings
-- 🔲 `PHASE1_WEEK2_REPORT.md` - Week 2 findings
-- 🔲 `PHASE1_FINAL_REPORT.md` - Complete Phase 1 results
+- `PHASE1_ROADMAP.md` - This document
+- `PHASE1_WEEK1_REPORT.md` - Week 1 findings
+- `PHASE1_WEEK2_REPORT.md` - Week 2 findings
+- `PHASE1_FINAL_REPORT.md` - Complete Phase 1 results
 
 ### Visualizations
 
-- 🔲 Training curves (loss, sparsity, dead features)
-- 🔲 Feature-emotion heatmap
-- 🔲 Feature activation distributions
-- 🔲 Top feature examples with prompts
+- Training curves (loss, sparsity, dead features)
+- Feature-emotion heatmap
+- Feature activation distributions
+- Top feature examples with prompts
 
 ---
 
-## 🎯 Phase 2 Preview
+## Phase 2 Preview
 
 **If Phase 1 succeeds**, proceed to Phase 2: **Activation Steering**
 
@@ -619,7 +619,7 @@ Document findings:
 prompt = "instrumental music"
 
 # Add "happy" steering vector
-happy_feature_vector = sae_decoder[:, happy_feature_42]  # Feature 42 = "joyful"
+happy_feature_vector = sae_decoder[:, happy_feature_42] # Feature 42 = "joyful"
 steered_embedding = t5_embedding + 2.0 * happy_feature_vector
 
 # Generate with MusicGen using steered embedding
@@ -633,7 +633,7 @@ steered_embedding = t5_embedding + 2.0 * happy_feature_vector
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 **To begin Phase 1 right now:**
 
@@ -658,7 +658,7 @@ python3 experiments/analyze_sae_features.py
 
 ---
 
-## 📞 Support & Resources
+## Support & Resources
 
 **Communities**:
 - EleutherAI Discord - #interpretability channel

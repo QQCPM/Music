@@ -2,15 +2,15 @@
 
 **Research Question**: Do music generation models "understand" emotion, or just correlate patterns?
 
-**Answer (Phase 0)**: ✅ **YES! 96% accuracy** - Emotions encoded in T5 text embeddings
+**Answer (Phase 0)**: **YES! 96% accuracy** - Emotions encoded in T5 text embeddings
 
 **Current Phase**: Phase 1 (SAE Training) - Ready to discover monosemantic emotion features
 
 ---
 
-## 🌟 New Here or Coming Back?
+## New Here or Coming Back?
 
-**→ START HERE: [WELCOME_BACK.md](WELCOME_BACK.md)** ← Clear entry point for returning users
+** START HERE: [WELCOME_BACK.md](WELCOME_BACK.md)** Clear entry point for returning users
 
 ---
 
@@ -20,7 +20,7 @@ This project investigates how MusicGen (3.3B transformer) internally represents 
 
 1. **Phase 0** (Months 1-2): Foundation & methodology validation
 2. **Phase 1** (Months 3-4): Train SAEs to find emotion-encoding features
-3. **Phase 2** (Months 5-6): Causal probing (tempo → energy → emotion)
+3. **Phase 2** (Months 5-6): Causal probing (tempo energy emotion)
 4. **Phase 3** (Months 7-9): Activation steering for emotion control
 
 ---
@@ -38,31 +38,31 @@ python3 experiments/train_sae_on_t5_embeddings.py
 python3 experiments/analyze_sae_features.py
 ```
 
-**📖 Phase 1 guide**: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) | **📊 Phase 0 results**: [PHASE0_TO_PHASE1_SUMMARY.md](PHASE0_TO_PHASE1_SUMMARY.md)
+** Phase 1 guide**: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) | ** Phase 0 results**: [PHASE0_TO_PHASE1_SUMMARY.md](PHASE0_TO_PHASE1_SUMMARY.md)
 
 ---
 
 ## Current Status (Oct 10, 2024)
 
-### ✅ Phase 0 COMPLETE
+### Phase 0 COMPLETE
 - **MAJOR DISCOVERY**: Emotions encoded in T5 text embeddings (96% accuracy)
 - 100 T5 embeddings extracted and validated
 - SAE infrastructure built and tested
 - Training/analysis pipelines ready
 
-### 🚀 Phase 1 READY TO START
+### Phase 1 READY TO START
 - Train Sparse Autoencoder on T5 embeddings (768-dim)
 - Find monosemantic emotion-encoding features
 - Target: 50+ selective features per emotion
 - **Next action**: Run `python3 experiments/train_sae_on_t5_embeddings.py`
 
-### 📊 Key Results
+### Key Results
 - T5 embeddings: 49% between-emotion similarity (STRONG differentiation)
 - Transformer activations: 95% similarity (WEAK differentiation)
 - Linear probe accuracy: 96%
 - Statistical significance: p < 0.000001
 
-**📋 Phase 1 plan**: [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) | **📝 Quick start**: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md)
+** Phase 1 plan**: [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) | ** Quick start**: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md)
 
 ---
 
@@ -79,14 +79,14 @@ python3 experiments/analyze_sae_features.py
 
 **Conclusion**: Emotions are represented differently in MusicGen's internal activations.
 
-**📖 Technical details**: [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
+** Technical details**: [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
 
 ---
 
 ## Success Criteria
 
 Evidence the model "understands" emotion:
-- ✅ Activations differentiate emotions (0.9461 similarity, not 0.99+)
+- Activations differentiate emotions (0.9461 similarity, not 0.99+)
 - [TODO] SAE features are monosemantic & emotion-related
 - [TODO] Causal pathways match human music perception
 - [TODO] Activation steering produces coherent emotional shifts
@@ -99,19 +99,19 @@ Evidence the model "understands" emotion:
 
 ```
 MusicGen/
-├── START_HERE.md              ← Read this first
-├── README.md                  ← You are here
-├── PHASE0_COMPLETE_PLAN.md   ← Action plan
-│
-├── src/utils/
-│   ├── activation_utils.py   ← Extract activations (FIXED)
-│   ├── audio_utils.py         ← Audio processing
-│   └── visualization_utils.py ← Plotting
-│
-├── test_fixed_extractor.py    ← Validates extraction works
-├── notebooks/                 ← Interactive exploration
-├── results/                   ← Generated data
-└── docs/                      ← Learning roadmap
+START_HERE.md Read this first
+README.md You are here
+PHASE0_COMPLETE_PLAN.md Action plan
+
+src/utils/
+activation_utils.py Extract activations (FIXED)
+audio_utils.py Audio processing
+visualization_utils.py Plotting
+
+test_fixed_extractor.py Validates extraction works
+notebooks/ Interactive exploration
+results/ Generated data
+docs/ Learning roadmap
 ```
 
 ---
@@ -120,11 +120,11 @@ MusicGen/
 
 ### The Activation Bug (Oct 6-7)
 
-**Problem**: Extractor was overwriting activations → captured only last of 459 timesteps
+**Problem**: Extractor was overwriting activations captured only last of 459 timesteps
 
-**Impact**: 0.9999 similarity → looked like no emotion differentiation
+**Impact**: 0.9999 similarity looked like no emotion differentiation
 
-**Fix**: Store all timesteps → now 0.9461 similarity
+**Fix**: Store all timesteps now 0.9461 similarity
 
 **Lesson**: Always validate methodology before interpreting results
 
@@ -147,7 +147,7 @@ This validates the Phase 1 plan: Use SAEs to disentangle sparse emotion encoding
 - librosa, soundfile (audio processing)
 - matplotlib, seaborn, umap-learn (visualization)
 
-**📄 Full list**: [requirements.txt](requirements.txt)
+** Full list**: [requirements.txt](requirements.txt)
 
 ---
 
@@ -173,10 +173,10 @@ This validates the Phase 1 plan: Use SAEs to disentangle sparse emotion encoding
 
 | Phase | Duration | Goal | Status |
 |-------|----------|------|--------|
-| **0** | Months 1-2 | Foundation & validation | 🔄 In progress |
-| **1** | Months 3-4 | SAE training for emotions | ⏳ Planned |
-| **2** | Months 5-6 | Causal pathway analysis | ⏳ Planned |
-| **3** | Months 7-9 | Activation steering | ⏳ Planned |
+| **0** | Months 1-2 | Foundation & validation | In progress |
+| **1** | Months 3-4 | SAE training for emotions | Planned |
+| **2** | Months 5-6 | Causal pathway analysis | Planned |
+| **3** | Months 7-9 | Activation steering | Planned |
 
 **Target completion**: June 2025
 
@@ -199,4 +199,4 @@ Research project for educational and academic purposes.
 
 ---
 
-**🚀 Get started**: [START_HERE.md](START_HERE.md)
+** Get started**: [START_HERE.md](START_HERE.md)

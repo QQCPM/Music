@@ -13,31 +13,31 @@
 Moved to `archive/`:
 
 1. **GETTING_STARTED.md** (384 lines)
-   - Redundant with new START_HERE.md
-   - Overlapped with QUICKSTART.md
-   - Outdated information
+- Redundant with new START_HERE.md
+- Overlapped with QUICKSTART.md
+- Outdated information
 
 2. **SETUP_COMPLETE.md** (366 lines)
-   - Status document from initial setup
-   - Superseded by current README.md
-   - No longer reflects project state
+- Status document from initial setup
+- Superseded by current README.md
+- No longer reflects project state
 
 3. **QUICKSTART.md** (313 lines)
-   - Redundant with GETTING_STARTED.md
-   - Now consolidated into START_HERE.md
+- Redundant with GETTING_STARTED.md
+- Now consolidated into START_HERE.md
 
 4. **FFMPEG_FIX_SUMMARY.md** (330 lines)
-   - Specific bug fix documentation
-   - Less relevant after moving to soundfile fallback
-   - Preserved in archive for reference
+- Specific bug fix documentation
+- Less relevant after moving to soundfile fallback
+- Preserved in archive for reference
 
 5. **docs/ARCHITECTURE_FIX.md**
-   - Architecture bug fix from initial setup
-   - Superseded by ACTIVATION_EXTRACTION_FIX.md
+- Architecture bug fix from initial setup
+- Superseded by ACTIVATION_EXTRACTION_FIX.md
 
 6. **docs/FFMPEG_SETUP.md**
-   - FFmpeg installation guide
-   - Redundant with archived FFMPEG_FIX_SUMMARY.md
+- FFmpeg installation guide
+- Redundant with archived FFMPEG_FIX_SUMMARY.md
 
 **Total archived**: ~1,400 lines
 
@@ -46,12 +46,12 @@ Moved to `archive/`:
 Moved to `archive/old_tests/`:
 
 1. **test_audio_saving.py**
-   - FFmpeg testing (less relevant now)
-   - Superseded by test_fixed_extractor.py
+- FFmpeg testing (less relevant now)
+- Superseded by test_fixed_extractor.py
 
 2. **test_fixed_architecture.py**
-   - Old architecture validation
-   - Superseded by test_fixed_extractor.py
+- Old architecture validation
+- Superseded by test_fixed_extractor.py
 
 ### Files Deleted
 
@@ -61,28 +61,28 @@ Moved to `archive/old_tests/`:
 
 ## Current Structure (Clean)
 
-### Root Level (15 items → Essential Only)
+### Root Level (15 items Essential Only)
 
 ```
 MusicGen/
-├── START_HERE.md                  ← NEW: Main entry point
-├── README.md                      ← UPDATED: Concise overview
-├── PHASE0_COMPLETE_PLAN.md       ← Action plan (3-4 weeks)
-├── ACTIVATION_EXTRACTION_FIX.md  ← Bug fix documentation
-├── DEBUG_SUMMARY.md              ← Debug session log
-│
-├── test_fixed_extractor.py        ← Main validation script
-├── debug_activation_extraction.py ← Diagnostic tool
-├── requirements.txt               ← Dependencies
-│
-├── src/                           ← Source code
-├── scripts/                       ← Setup scripts
-├── notebooks/                     ← Interactive exploration
-├── docs/                          ← Learning resources
-├── data/                          ← Datasets
-├── results/                       ← Generated outputs
-├── archive/                       ← NEW: Old docs
-└── venv/                          ← Python environment
+START_HERE.md NEW: Main entry point
+README.md UPDATED: Concise overview
+PHASE0_COMPLETE_PLAN.md Action plan (3-4 weeks)
+ACTIVATION_EXTRACTION_FIX.md Bug fix documentation
+DEBUG_SUMMARY.md Debug session log
+
+test_fixed_extractor.py Main validation script
+debug_activation_extraction.py Diagnostic tool
+requirements.txt Dependencies
+
+src/ Source code
+scripts/ Setup scripts
+notebooks/ Interactive exploration
+docs/ Learning resources
+data/ Datasets
+results/ Generated outputs
+archive/ NEW: Old docs
+venv/ Python environment
 ```
 
 ### Documentation Hierarchy (Clear)
@@ -143,15 +143,15 @@ MusicGen/
 
 ```
 archive/
-├── GETTING_STARTED.md
-├── SETUP_COMPLETE.md
-├── QUICKSTART.md
-├── FFMPEG_FIX_SUMMARY.md
-├── ARCHITECTURE_FIX.md
-├── FFMPEG_SETUP.md
-└── old_tests/
-    ├── test_audio_saving.py
-    └── test_fixed_architecture.py
+GETTING_STARTED.md
+SETUP_COMPLETE.md
+QUICKSTART.md
+FFMPEG_FIX_SUMMARY.md
+ARCHITECTURE_FIX.md
+FFMPEG_SETUP.md
+old_tests/
+test_audio_saving.py
+test_fixed_architecture.py
 ```
 
 **Purpose**: Preserve history without cluttering main directory
@@ -200,60 +200,60 @@ archive/
 ### For New Users
 
 1. Read [START_HERE.md](START_HERE.md) (15 min)
-   - Understand current status
-   - Run test script
-   - See what's next
+- Understand current status
+- Run test script
+- See what's next
 
 2. Read [README.md](README.md) (5 min)
-   - Get full context
-   - Understand research goals
-   - See timeline
+- Get full context
+- Understand research goals
+- See timeline
 
 3. Check [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md) (30 min)
-   - Detailed week-by-week plan
-   - Success criteria
-   - What to create
+- Detailed week-by-week plan
+- Success criteria
+- What to create
 
 ### For Understanding the Bug
 
 1. Read [DEBUG_SUMMARY.md](DEBUG_SUMMARY.md) (10 min)
-   - What was the problem?
-   - How was it found?
-   - What was the fix?
+- What was the problem?
+- How was it found?
+- What was the fix?
 
 2. Read [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md) (15 min)
-   - Technical details
-   - Results comparison
-   - Updated workflow
+- Technical details
+- Results comparison
+- Updated workflow
 
 ### For Learning
 
 1. [docs/phase0_roadmap.md](docs/phase0_roadmap.md) (review 30 min, execute 8 weeks)
-   - Week-by-week learning plan
-   - ARENA exercises
-   - Paper reading list
+- Week-by-week learning plan
+- ARENA exercises
+- Paper reading list
 
 ---
 
 ## What to Read When
 
 ### I'm Starting Fresh (Never Seen This Project)
-→ [START_HERE.md](START_HERE.md) then [README.md](README.md)
+[START_HERE.md](START_HERE.md) then [README.md](README.md)
 
 ### I Want to Understand the Research
-→ [README.md](README.md) then [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md)
+[README.md](README.md) then [PHASE0_COMPLETE_PLAN.md](PHASE0_COMPLETE_PLAN.md)
 
 ### I Need to Debug Activations
-→ [test_fixed_extractor.py](test_fixed_extractor.py) then [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
+[test_fixed_extractor.py](test_fixed_extractor.py) then [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
 
 ### I Want Context on What Happened
-→ [DEBUG_SUMMARY.md](DEBUG_SUMMARY.md)
+[DEBUG_SUMMARY.md](DEBUG_SUMMARY.md)
 
 ### I Want to Learn Interpretability
-→ [docs/phase0_roadmap.md](docs/phase0_roadmap.md)
+[docs/phase0_roadmap.md](docs/phase0_roadmap.md)
 
 ### I'm Looking for Old Docs
-→ `archive/` directory
+`archive/` directory
 
 ---
 
@@ -353,7 +353,7 @@ When creating new documentation:
 
 ## Next Steps for Codebase
 
-### Documentation (Complete ✅)
+### Documentation (Complete )
 
 - [x] Create START_HERE.md
 - [x] Update README.md

@@ -1,27 +1,27 @@
-# 🎉 Setup Complete!
+# Setup Complete!
 
 Your MusicGen interpretability research project is fully configured and tested.
 
 ---
 
-## ✅ What's Working
+## What's Working
 
 All architecture issues have been resolved. The project now correctly accesses MusicGen's transformer layers at:
 ```python
-model.lm.transformer.layers  # Correct path!
+model.lm.transformer.layers # Correct path!
 ```
 
 ### Verified Components
 
-✅ **Model Loading**: Can load MusicGen Small/Medium/Large (3.3B)
-✅ **Architecture Access**: Correctly accesses all 24 transformer layers
-✅ **Activation Extraction**: Hooks work properly and capture layer outputs
-✅ **Utility Functions**: All helper functions for audio and visualization
-✅ **Documentation**: Comprehensive guides and learning roadmap
+**Model Loading**: Can load MusicGen Small/Medium/Large (3.3B)
+**Architecture Access**: Correctly accesses all 24 transformer layers
+**Activation Extraction**: Hooks work properly and capture layer outputs
+**Utility Functions**: All helper functions for audio and visualization
+**Documentation**: Comprehensive guides and learning roadmap
 
 ---
 
-## 🚀 Quick Start (5 minutes)
+## Quick Start (5 minutes)
 
 ### 1. Activate Environment
 ```bash
@@ -36,7 +36,7 @@ python3 test_fixed_architecture.py
 
 Expected output:
 ```
-✅ ALL TESTS PASSED!
+ALL TESTS PASSED!
 ```
 
 ### 3. Try the Interactive Notebook
@@ -52,61 +52,61 @@ This notebook will:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 MusicGen/
-├── README.md                        # Project overview
-├── QUICKSTART.md                    # Installation guide
-├── GETTING_STARTED.md               # Step-by-step tutorial
-├── SETUP_COMPLETE.md                # This file
-├── requirements.txt                 # Python dependencies
-│
-├── docs/
-│   ├── phase0_roadmap.md           # 8-week learning plan
-│   └── ARCHITECTURE_FIX.md         # Technical architecture details
-│
-├── scripts/
-│   ├── setup_environment.py        # System requirements check
-│   ├── check_gpu.py                # GPU verification
-│   ├── download_models.py          # Download MusicGen models
-│   └── prepare_datasets.py         # Dataset preparation
-│
-├── src/utils/
-│   ├── activation_utils.py         # ✅ FIXED - Activation extraction
-│   ├── audio_utils.py              # Audio processing
-│   └── visualization_utils.py      # Plotting tools
-│
-├── notebooks/
-│   └── 00_quick_test.ipynb         # ✅ FIXED - Interactive tutorial
-│
-├── data/                            # Your datasets
-├── results/                         # Outputs and visualizations
-└── test_fixed_architecture.py      # ✅ NEW - Verification script
+README.md # Project overview
+QUICKSTART.md # Installation guide
+GETTING_STARTED.md # Step-by-step tutorial
+SETUP_COMPLETE.md # This file
+requirements.txt # Python dependencies
+
+docs/
+phase0_roadmap.md # 8-week learning plan
+ARCHITECTURE_FIX.md # Technical architecture details
+
+scripts/
+setup_environment.py # System requirements check
+check_gpu.py # GPU verification
+download_models.py # Download MusicGen models
+prepare_datasets.py # Dataset preparation
+
+src/utils/
+activation_utils.py # FIXED - Activation extraction
+audio_utils.py # Audio processing
+visualization_utils.py # Plotting tools
+
+notebooks/
+00_quick_test.ipynb # FIXED - Interactive tutorial
+
+data/ # Your datasets
+results/ # Outputs and visualizations
+test_fixed_architecture.py # NEW - Verification script
 ```
 
 ---
 
-## 🔧 What Was Fixed
+## What Was Fixed
 
 ### The Problem
-Initial code used incorrect path: `model.lm.layers` ❌
+Initial code used incorrect path: `model.lm.layers` 
 
 ### The Solution
-Updated to correct path: `model.lm.transformer.layers` ✅
+Updated to correct path: `model.lm.transformer.layers` 
 
 ### Files Updated
-1. ✅ `src/utils/activation_utils.py` - Fixed layer access
-2. ✅ `notebooks/00_quick_test.ipynb` - Fixed architecture print
-3. ✅ Created `test_fixed_architecture.py` - Verification test
+1. `src/utils/activation_utils.py` - Fixed layer access
+2. `notebooks/00_quick_test.ipynb` - Fixed architecture print
+3. Created `test_fixed_architecture.py` - Verification test
 
 See [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md) for technical details.
 
 ---
 
-## 🎯 Your Research Journey
+## Your Research Journey
 
-### Phase 0: Foundation (Months 1-2) ← **START HERE**
+### Phase 0: Foundation (Months 1-2) **START HERE**
 
 **Week 1-2: Learn Mechanistic Interpretability**
 - Study ARENA tutorials on SAEs and superposition
@@ -128,7 +128,7 @@ See [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md) for technical details.
 - Study "Activation Steering for Music Generation" (June 2025)
 - Review neuroscience papers on music emotion
 
-📖 **Full roadmap**: [docs/phase0_roadmap.md](docs/phase0_roadmap.md)
+**Full roadmap**: [docs/phase0_roadmap.md](docs/phase0_roadmap.md)
 
 ---
 
@@ -151,7 +151,7 @@ See [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md) for technical details.
 **Research Question**: Does the model use human-like causal pathways?
 
 **Experiments**:
-1. Causal probing: tempo → energy → emotion
+1. Causal probing: tempo energy emotion
 2. Counterfactual interventions on layer activations
 3. Compare model pathways to neuroscience findings
 
@@ -173,7 +173,7 @@ See [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md) for technical details.
 
 ---
 
-## 💡 First Experiment (30 minutes)
+## First Experiment (30 minutes)
 
 Try this concrete experiment right now:
 
@@ -202,8 +202,8 @@ sad_activations = extractor.get_activations()
 # Compare layer 12
 from src.utils.activation_utils import cosine_similarity
 similarity = cosine_similarity(
-    happy_activations['layer_12'],
-    sad_activations['layer_12']
+happy_activations['layer_12'],
+sad_activations['layer_12']
 )
 print(f"Similarity: {similarity:.4f}")
 # If < 0.9, emotions are represented differently!
@@ -211,7 +211,7 @@ print(f"Similarity: {similarity:.4f}")
 
 ---
 
-## 📊 Key Model Information
+## Key Model Information
 
 ### MusicGen Large (3.3B)
 - **Parameters**: 3.3 billion
@@ -222,9 +222,9 @@ print(f"Similarity: {similarity:.4f}")
 
 ### Architecture Path
 ```python
-model.lm.transformer.layers[0-23]  # 24 layers
-model.lm.transformer.layers[i].self_attn  # Self-attention
-model.lm.transformer.layers[i].norm1  # Layer norm
+model.lm.transformer.layers[0-23] # 24 layers
+model.lm.transformer.layers[i].self_attn # Self-attention
+model.lm.transformer.layers[i].norm1 # Layer norm
 ```
 
 ### Activation Shapes
@@ -235,14 +235,14 @@ model.lm.transformer.layers[i].norm1  # Layer norm
 
 ---
 
-## 🎓 Learning Resources
+## Learning Resources
 
 ### Documentation in This Project
-- 📖 [README.md](README.md) - Overview
-- 🚀 [QUICKSTART.md](QUICKSTART.md) - Installation
-- 📚 [GETTING_STARTED.md](GETTING_STARTED.md) - Tutorial
-- 🗺️ [docs/phase0_roadmap.md](docs/phase0_roadmap.md) - Learning plan
-- 🔧 [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md) - Technical details
+- [README.md](README.md) - Overview
+- [QUICKSTART.md](QUICKSTART.md) - Installation
+- [GETTING_STARTED.md](GETTING_STARTED.md) - Tutorial
+- ️ [docs/phase0_roadmap.md](docs/phase0_roadmap.md) - Learning plan
+- [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md) - Technical details
 
 ### External Resources
 - **ARENA Tutorials**: https://arena3-chapter1-transformer-interp.streamlit.app/
@@ -258,15 +258,15 @@ model.lm.transformer.layers[i].norm1  # Layer norm
 
 ---
 
-## ⚡ Performance Tips
+## Performance Tips
 
 ### GPU Memory Optimization
 ```python
 # Use smaller model for testing
-model = MusicGen.get_pretrained('facebook/musicgen-small')  # 8GB VRAM
+model = MusicGen.get_pretrained('facebook/musicgen-small') # 8GB VRAM
 
 # Shorter generation
-model.set_generation_params(duration=5)  # 5 seconds
+model.set_generation_params(duration=5) # 5 seconds
 
 # Store activations on CPU
 extractor = ActivationExtractor(model, store_on_cpu=True)
@@ -284,10 +284,10 @@ torch.cuda.empty_cache()
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "AttributeError: 'LMModel' object has no attribute 'layers'"
-✅ **Fixed!** Make sure you're using the updated code with `model.lm.transformer.layers`
+**Fixed!** Make sure you're using the updated code with `model.lm.transformer.layers`
 
 ### "CUDA out of memory"
 - Use `musicgen-small` or `musicgen-medium`
@@ -301,13 +301,13 @@ torch.cuda.empty_cache()
 
 ---
 
-## ✨ Next Steps
+## Next Steps
 
 ### Immediate (Today)
-1. ✅ Run `python3 test_fixed_architecture.py` to verify setup
-2. ✅ Open and run `notebooks/00_quick_test.ipynb`
-3. ✅ Generate your first music samples and listen to them
-4. ✅ Extract activations and visualize patterns
+1. Run `python3 test_fixed_architecture.py` to verify setup
+2. Open and run `notebooks/00_quick_test.ipynb`
+3. Generate your first music samples and listen to them
+4. Extract activations and visualize patterns
 
 ### This Week
 1. Read [docs/phase0_roadmap.md](docs/phase0_roadmap.md) Week 1-2 section
@@ -323,27 +323,27 @@ torch.cuda.empty_cache()
 
 ---
 
-## 🎵 Core Research Question
+## Core Research Question
 
 **"Do music generation models 'understand' emotion, or just correlate patterns?"**
 
 ### How You'll Answer It
 
 **Evidence for "understanding"**:
-- ✅ Emotions form linear, separable representations
-- ✅ Causal pathways match human music perception
-- ✅ Activation steering produces coherent, emotionally-shifted music
+- Emotions form linear, separable representations
+- Causal pathways match human music perception
+- Activation steering produces coherent, emotionally-shifted music
 
 **Evidence for "pattern matching"**:
-- ❌ Emotion representations are entangled/polysemantic
-- ❌ No coherent causal structure
-- ❌ Steering produces incoherent or unchanged music
+- Emotion representations are entangled/polysemantic
+- No coherent causal structure
+- Steering produces incoherent or unchanged music
 
 **Either result is novel and publishable!**
 
 ---
 
-## 📧 Getting Help
+## Getting Help
 
 - **Architecture questions**: See [docs/ARCHITECTURE_FIX.md](docs/ARCHITECTURE_FIX.md)
 - **Installation issues**: See [QUICKSTART.md](QUICKSTART.md)
@@ -352,7 +352,7 @@ torch.cuda.empty_cache()
 
 ---
 
-## 🎉 You're Ready!
+## You're Ready!
 
 Everything is set up and tested. The infrastructure is solid. Now it's time to:
 
@@ -363,4 +363,4 @@ Everything is set up and tested. The infrastructure is solid. Now it's time to:
 
 **Take your time.** Deep understanding beats rushing. This is a 6-9 month journey of rigorous, meaningful research.
 
-Good luck! 🎵🔬✨
+Good luck! 

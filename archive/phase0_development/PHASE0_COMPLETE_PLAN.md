@@ -38,12 +38,12 @@ You initially **skipped step 2** and moved on. **That's the mistake.**
 
 ## Revised Phase 0 Objectives (Achievable in 3-4 Weeks)
 
-### Week 1: Validate Methodology ✅ (MOSTLY DONE)
+### Week 1: Validate Methodology (MOSTLY DONE)
 
 **Completed**:
-- [✅] Fix activation extraction (done!)
-- [✅] Verify fix captures full sequence (done!)
-- [✅] Confirm similarity drops below 0.99 (done! now 0.9461)
+- [] Fix activation extraction (done!)
+- [] Verify fix captures full sequence (done!)
+- [] Confirm similarity drops below 0.99 (done! now 0.9461)
 
 **Remaining**:
 - [TODO] Update notebook to use fixed extractor
@@ -61,35 +61,35 @@ You initially **skipped step 2** and moved on. **That's the mistake.**
 **Tasks**:
 
 1. **Generate 80 samples** (20 per emotion):
-   ```python
-   emotions = ['happy', 'sad', 'calm', 'energetic']
-   prompts = {
-       'happy': [
-           "upbeat cheerful pop music",
-           "joyful energetic dance music",
-           "bright optimistic melody",
-           # ... 17 more variations
-       ],
-       # ... same for sad, calm, energetic
-   }
-   ```
+```python
+emotions = ['happy', 'sad', 'calm', 'energetic']
+prompts = {
+'happy': [
+"upbeat cheerful pop music",
+"joyful energetic dance music",
+"bright optimistic melody",
+# ... 17 more variations
+],
+# ... same for sad, calm, energetic
+}
+```
 
 2. **Extract activations** from strategic layers:
-   - Layer 0 (input)
-   - Layer 12 (early-middle)
-   - Layer 24 (middle)
-   - Layer 36 (late-middle)
-   - Layer 47 (output)
+- Layer 0 (input)
+- Layer 12 (early-middle)
+- Layer 24 (middle)
+- Layer 36 (late-middle)
+- Layer 47 (output)
 
 3. **Save efficiently**:
-   ```python
-   # Don't save all 459 timesteps for all layers - too big!
-   # Strategy: Average over time for initial analysis
-   for layer_name, activations in all_activations.items():
-       # activations shape: [459, 2, 1, 2048]
-       mean_activation = activations.mean(dim=0)  # [2, 1, 2048]
-       save(mean_activation, f"sample_{i}_layer_{layer_name}.pt")
-   ```
+```python
+# Don't save all 459 timesteps for all layers - too big!
+# Strategy: Average over time for initial analysis
+for layer_name, activations in all_activations.items():
+# activations shape: [459, 2, 1, 2048]
+mean_activation = activations.mean(dim=0) # [2, 1, 2048]
+save(mean_activation, f"sample_{i}_layer_{layer_name}.pt")
+```
 
 **Deliverable**:
 - 80 audio files (results/emotion_dataset/)
@@ -112,12 +112,12 @@ You initially **skipped step 2** and moved on. **That's the mistake.**
 # Within-emotion similarity (should be HIGH)
 happy_samples = load_activations(emotion='happy', layer=12)
 within_sim_happy = pairwise_cosine_similarity(happy_samples)
-within_sim_happy_mean = within_sim_happy.mean()  # Expect ~0.95-0.98
+within_sim_happy_mean = within_sim_happy.mean() # Expect ~0.95-0.98
 
 # Between-emotion similarity (should be LOWER)
 sad_samples = load_activations(emotion='sad', layer=12)
 between_sim = cosine_similarity(happy_samples, sad_samples)
-between_sim_mean = between_sim.mean()  # Expect ~0.90-0.95
+between_sim_mean = between_sim.mean() # Expect ~0.90-0.95
 
 # The gap = signal strength
 signal_strength = within_sim_happy_mean - between_sim_mean
@@ -136,14 +136,14 @@ all_layer12 = []
 all_labels = []
 
 for emotion in ['happy', 'sad', 'calm', 'energetic']:
-    acts = load_activations(emotion=emotion, layer=12)
-    # acts shape: [20 samples, 2, 1, 2048]
-    acts_flat = acts.reshape(20, -1)  # [20, 4096]
-    all_layer12.append(acts_flat)
-    all_labels.extend([emotion] * 20)
+acts = load_activations(emotion=emotion, layer=12)
+# acts shape: [20 samples, 2, 1, 2048]
+acts_flat = acts.reshape(20, -1) # [20, 4096]
+all_layer12.append(acts_flat)
+all_labels.extend([emotion] * 20)
 
 # Stack and run UMAP
-X = np.vstack(all_layer12)  # [80, 4096]
+X = np.vstack(all_layer12) # [80, 4096]
 embedding = umap.UMAP().fit_transform(X)
 
 # Plot
@@ -162,17 +162,17 @@ plt.title("UMAP: Emotions in Layer 12 Activation Space")
 ```python
 # Extract acoustic features for all 80 samples
 for i, audio_file in enumerate(all_audio_files):
-    features = extract_audio_features(audio_file)
-    # features = {tempo, spectral_centroid, rms, chroma, ...}
+features = extract_audio_features(audio_file)
+# features = {tempo, spectral_centroid, rms, chroma, ...}
 
-    # Check if they match emotion labels
-    if labels[i] == 'energetic':
-        assert features['tempo'] > 120  # High tempo
-        assert features['rms_mean'] > 0.05  # Loud
+# Check if they match emotion labels
+if labels[i] == 'energetic':
+assert features['tempo'] > 120 # High tempo
+assert features['rms_mean'] > 0.05 # Loud
 
-    if labels[i] == 'sad':
-        assert features['tempo'] < 100  # Slow
-        assert features['mode'] == 'minor'  # Minor key (often)
+if labels[i] == 'sad':
+assert features['tempo'] < 100 # Slow
+assert features['mode'] == 'minor' # Minor key (often)
 ```
 
 **Question**: Do generated samples actually sound like their labels?
@@ -194,19 +194,19 @@ for i, audio_file in enumerate(all_audio_files):
 #### Reading List (Essential)
 
 1. **Toy Models of Superposition** (Anthropic, 2022)
-   - Focus: Why are neural nets hard to interpret?
-   - Time: 3 hours reading + 2 hours experiments
-   - **Must understand**: Figures 1, 3, 8
+- Focus: Why are neural nets hard to interpret?
+- Time: 3 hours reading + 2 hours experiments
+- **Must understand**: Figures 1, 3, 8
 
 2. **Sparse Autoencoders Find Highly Interpretable Features** (Anthropic, 2023)
-   - Focus: How SAEs work, training objective
-   - Time: 4 hours
-   - **Must understand**: Section 3 (method), reconstruction/sparsity tradeoff
+- Focus: How SAEs work, training objective
+- Time: 4 hours
+- **Must understand**: Section 3 (method), reconstruction/sparsity tradeoff
 
 3. **ARENA 1.2: Intro to SAEs** (exercises)
-   - Focus: Hands-on SAE training
-   - Time: 6-8 hours
-   - **Deliverable**: Trained SAE on toy model
+- Focus: Hands-on SAE training
+- Time: 6-8 hours
+- **Deliverable**: Trained SAE on toy model
 
 #### SAE Training Preparation
 
@@ -214,12 +214,12 @@ for i, audio_file in enumerate(all_audio_files):
 ```python
 # SAE Config for MusicGen Layer 12
 sae_config = {
-    'd_in': 2048,  # MusicGen Large d_model
-    'd_sae': 16384,  # 8x overcomplete (standard)
-    'l1_coefficient': 3e-4,  # Tune this
-    'batch_size': 256,
-    'lr': 1e-3,
-    'num_epochs': 20,
+'d_in': 2048, # MusicGen Large d_model
+'d_sae': 16384, # 8x overcomplete (standard)
+'l1_coefficient': 3e-4, # Tune this
+'batch_size': 256,
+'lr': 1e-3,
+'num_epochs': 20,
 }
 
 # Training data: 80 samples × 459 timesteps = 36,720 activation vectors
@@ -236,17 +236,17 @@ sae_config = {
 
 ## Phase 0 Completion Checklist (Updated)
 
-### Technical Infrastructure ✅ (DONE)
+### Technical Infrastructure (DONE)
 
-- [✅] MusicGen Large loaded and working
-- [✅] Activation extraction FIXED (captures all timesteps)
-- [✅] Audio saving working (with FFmpeg fallback)
-- [✅] Visualization utilities implemented
-- [✅] Test scripts validate correctness
+- [] MusicGen Large loaded and working
+- [] Activation extraction FIXED (captures all timesteps)
+- [] Audio saving working (with FFmpeg fallback)
+- [] Visualization utilities implemented
+- [] Test scripts validate correctness
 
 ### Experimental Validation (IN PROGRESS)
 
-- [✅] Verified emotions differentiate in activations (0.9461 similarity)
+- [] Verified emotions differentiate in activations (0.9461 similarity)
 - [TODO] Generated 80-sample emotion dataset
 - [TODO] Confirmed acoustic features match labels
 - [TODO] UMAP shows emotion clustering
@@ -272,7 +272,7 @@ sae_config = {
 
 ### Minimum Requirements
 
-1. **Methodology validated**: ✅ (DONE - fixed extractor)
+1. **Methodology validated**: (DONE - fixed extractor)
 2. **Dataset collected**: TODO (need 80 samples)
 3. **Acoustic validation**: TODO (features match labels)
 4. **Clustering observed**: TODO (UMAP shows separation)
@@ -325,36 +325,36 @@ sae_config = {
 ### Immediate (This Week)
 
 1. **`experiments/01_generate_emotion_dataset.py`**
-   - Generate 80 samples (20 per emotion)
-   - Extract activations from 5 key layers
-   - Save with metadata
+- Generate 80 samples (20 per emotion)
+- Extract activations from 5 key layers
+- Save with metadata
 
 2. **`experiments/02_validate_acoustic_features.py`**
-   - Extract tempo, spectral features for all samples
-   - Verify they match emotion labels
-   - Plot distributions
+- Extract tempo, spectral features for all samples
+- Verify they match emotion labels
+- Plot distributions
 
 3. **`experiments/03_layer_wise_analysis.py`**
-   - Compute within/between emotion similarity for all layers
-   - Find layers with strongest emotion signal
-   - Visualize results
+- Compute within/between emotion similarity for all layers
+- Find layers with strongest emotion signal
+- Visualize results
 
 ### Medium-Term (Week 2-3)
 
 4. **`experiments/04_umap_clustering.py`**
-   - UMAP projection of all 80 samples
-   - Compute silhouette scores
-   - Visualize emotion clustering
+- UMAP projection of all 80 samples
+- Compute silhouette scores
+- Visualize emotion clustering
 
 5. **`experiments/05_temporal_analysis.py`**
-   - Analyze how similarity changes over timesteps
-   - Find when emotions emerge during generation
-   - Plot temporal dynamics
+- Analyze how similarity changes over timesteps
+- Find when emotions emerge during generation
+- Plot temporal dynamics
 
 6. **`research_notes/phase0_findings.md`**
-   - Document all results
-   - Interpret findings
-   - List questions for Phase 1
+- Document all results
+- Interpret findings
+- List questions for Phase 1
 
 ---
 
@@ -363,10 +363,10 @@ sae_config = {
 ### 1. The Bug Taught You Research Process
 
 **Wrong approach** (what you did initially):
-- See unexpected result (0.9999) → Move on → Declare success
+- See unexpected result (0.9999) Move on Declare success
 
 **Right approach** (what you should do):
-- See unexpected result → **Investigate deeply** → Find root cause → Fix → Re-evaluate
+- See unexpected result **Investigate deeply** Find root cause Fix Re-evaluate
 
 ### 2. Similarity = 0.9461 is Actually Good News
 
@@ -396,29 +396,29 @@ This validates your Phase 1 plan:
 ### Technical Report Contents
 
 1. **Architecture validation**:
-   - "MusicGen Large has 48 layers, d_model=2048"
-   - "Generation uses 459 timesteps for 8s audio"
-   - "Activations shape: [459, 2, 1, 2048]"
+- "MusicGen Large has 48 layers, d_model=2048"
+- "Generation uses 459 timesteps for 8s audio"
+- "Activations shape: [459, 2, 1, 2048]"
 
 2. **Emotion differentiation results**:
-   - "4 emotions (happy/sad/calm/energetic) tested"
-   - "80 samples generated (20 per emotion)"
-   - "Layer 24 shows strongest differentiation (avg between-emotion sim = 0.91)"
-   - "UMAP visualization shows partial clustering (silhouette = 0.23)"
+- "4 emotions (happy/sad/calm/energetic) tested"
+- "80 samples generated (20 per emotion)"
+- "Layer 24 shows strongest differentiation (avg between-emotion sim = 0.91)"
+- "UMAP visualization shows partial clustering (silhouette = 0.23)"
 
 3. **Acoustic validation**:
-   - "Generated music matches intended emotions in 73 of 80 samples (91%)"
-   - "Happy: tempo = 125±15 BPM, sad: tempo = 82±12 BPM"
-   - "Correlation between tempo and arousal: r = 0.67, p < 0.001"
+- "Generated music matches intended emotions in 73 of 80 samples (91%)"
+- "Happy: tempo = 125±15 BPM, sad: tempo = 82±12 BPM"
+- "Correlation between tempo and arousal: r = 0.67, p < 0.001"
 
 4. **Phase 1 readiness**:
-   - "Will train SAEs on layer 24 (strongest emotion signal)"
-   - "Target: 90% sparsity, <10% reconstruction loss"
-   - "Expect to find 50-100 interpretable features related to emotion"
+- "Will train SAEs on layer 24 (strongest emotion signal)"
+- "Target: 90% sparsity, <10% reconstruction loss"
+- "Expect to find 50-100 interpretable features related to emotion"
 
 ### What You'll Have Learned
 
-- [✅] How MusicGen actually works (autoregressive generation)
+- [] How MusicGen actually works (autoregressive generation)
 - [TODO] How to design rigorous experiments
 - [TODO] How to validate results statistically
 - [TODO] How SAEs disentangle superposition
@@ -445,7 +445,7 @@ Better to spend 3 months on Phase 0 and publish something solid than rush throug
 ## Summary: Your Action Plan
 
 ### This Week
-1. ✅ Fix activation extraction (DONE!)
+1. Fix activation extraction (DONE!)
 2. TODO: Update notebook
 3. TODO: Generate 80-sample dataset
 

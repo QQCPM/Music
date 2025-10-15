@@ -15,7 +15,7 @@
 **Reality**:
 - Control (same prompt): 0.9508
 - Happy vs sad: 0.9461
-- **Difference: 0.0047 (0.47%)** ← noise level
+- **Difference: 0.0047 (0.47%)** noise level
 - Acoustic features barely differ
 - Statistical test WORSE than random
 
@@ -48,9 +48,9 @@ python experiments/comprehensive_emotion_search.py
 
 **Expected output**:
 ```
-Best layer: 36 (signal = 0.048)  # GOOD
+Best layer: 36 (signal = 0.048) # GOOD
 # or
-Best layer: 12 (signal = 0.008)  # BAD
+Best layer: 12 (signal = 0.008) # BAD
 ```
 
 **Wednesday-Thursday**: Validate prompts acoustically
@@ -61,10 +61,10 @@ Best layer: 12 (signal = 0.008)  # BAD
 
 **Expected output**:
 ```
-Happy: Tempo = 135 ± 15 BPM ✅
-Sad:   Tempo = 72 ± 10 BPM ✅
+Happy: Tempo = 135 ± 15 BPM 
+Sad: Tempo = 72 ± 10 BPM 
 # or
-Happy: Tempo = 85 ± 20 BPM ❌ (too slow/variable)
+Happy: Tempo = 85 ± 20 BPM (too slow/variable)
 ```
 
 **Friday**: Generate 10 samples per emotion
@@ -123,33 +123,33 @@ Happy: Tempo = 85 ± 20 BPM ❌ (too slow/variable)
 
 ```
 Start
-  ↓
+
 Run comprehensive_emotion_search.py
-  ↓
+
 Check best layer signal
-  ↓
-  ├─> Signal > 3% + p < 0.01
-  │   ↓
-  │   Generate 20+ samples
-  │   ↓
-  │   Linear probe > 70%?
-  │   ↓
-  │   YES → ✅ Proceed Phase 1 (SAE training)
-  │
-  ├─> Signal 1-3% + p < 0.05
-  │   ↓
-  │   Generate 50+ samples
-  │   ↓
-  │   Recheck statistics
-  │   ↓
-  │   Still significant? → Week 3 deep dive
-  │
-  └─> Signal < 1% or p > 0.05
-      ↓
-      Test other models?
-      ↓
-      NO → Pivot to "why not" paper
-      YES → Try AudioLDM/Jukebox
+
+> Signal > 3% + p < 0.01
+
+Generate 20+ samples
+
+Linear probe > 70%?
+
+YES Proceed Phase 1 (SAE training)
+
+> Signal 1-3% + p < 0.05
+
+Generate 50+ samples
+
+Recheck statistics
+
+Still significant? Week 3 deep dive
+
+> Signal < 1% or p > 0.05
+
+Test other models?
+
+NO Pivot to "why not" paper
+YES Try AudioLDM/Jukebox
 ```
 
 ---
@@ -178,7 +178,7 @@ Check best layer signal
 
 ## What "Success" Actually Looks Like
 
-### Scenario A: Strong Signal Found ✅
+### Scenario A: Strong Signal Found 
 
 **Week 1 results**:
 ```
@@ -200,7 +200,7 @@ Linear probe: 82%
 
 ---
 
-### Scenario B: Weak Signal Found ⚠️
+### Scenario B: Weak Signal Found ️
 
 **Week 1 results**:
 ```
@@ -223,7 +223,7 @@ Linear probe: 64%
 
 ---
 
-### Scenario C: No Signal Found ❌
+### Scenario C: No Signal Found 
 
 **Week 1 results**:
 ```

@@ -1,135 +1,135 @@
 # MusicGen Emotion Interpretability - Complete System Overview
 
 **Last Updated**: October 10, 2024
-**Status**: Phase 1 Ready ✅
+**Status**: Phase 1 Ready 
 
 ---
 
-## 🎯 The Complete Pipeline
+## The Complete Pipeline
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         PHASE 0: COMPLETE ✅                         │
-└─────────────────────────────────────────────────────────────────────┘
+┌┐
+PHASE 0: COMPLETE 
+┘
 
-  Text Prompts                    T5 Encoder              Embeddings
-  ┌──────────┐                   ┌─────────┐            ┌───────────┐
-  │ "happy   │ ──────────────────>│   T5    │──────────> │  768-dim  │
-  │  music"  │   tokenize + encode│  base   │            │ embedding │
-  └──────────┘                   └─────────┘            └───────────┘
-                                                                │
-                                                                ▼
-  ┌─────────────────────────────────────────────────────────────────┐
-  │  DISCOVERY: Emotions ARE encoded here (96% accuracy)            │
-  │  • Happy vs Sad: 74.5% similarity (25% differentiation)         │
-  │  • Within-emotion: 56% similarity                                │
-  │  • Between-emotion: 49% similarity                               │
-  └─────────────────────────────────────────────────────────────────┘
+Text Prompts T5 Encoder Embeddings
+┌┐ ┌┐ ┌┐
+"happy > T5 > 768-dim 
+music" tokenize + encode base embedding 
+┘ ┘ ┘
 
-┌─────────────────────────────────────────────────────────────────────┐
-│                    PHASE 1: READY TO START 🚀                        │
-└─────────────────────────────────────────────────────────────────────┘
 
-  T5 Embeddings                  SAE Training          Learned Features
-  ┌───────────┐                 ┌──────────┐          ┌──────────────┐
-  │  768-dim  │ ─────────────>  │  Sparse  │ ───────> │ 50-100       │
-  │ (100      │   train with    │  Auto-   │  find    │ monosemantic │
-  │  samples) │   L1 sparsity   │  encoder │  features│ features     │
-  └───────────┘                 └──────────┘          └──────────────┘
-                                     │                         │
-                          768 → 6144 → 768          Feature 42: "joyful"
-                          (8x overcomplete)         Feature 108: "sad"
-                                                    Feature 221: "calm"
+┌┐
+DISCOVERY: Emotions ARE encoded here (96% accuracy) 
+• Happy vs Sad: 74.5% similarity (25% differentiation) 
+• Within-emotion: 56% similarity 
+• Between-emotion: 49% similarity 
+┘
 
-┌─────────────────────────────────────────────────────────────────────┐
-│                       PHASE 2: PLANNED                               │
-└─────────────────────────────────────────────────────────────────────┘
+┌┐
+PHASE 1: READY TO START 
+┘
 
-  Learned Features            Activation Steering        MusicGen Output
-  ┌──────────────┐           ┌─────────────────┐        ┌─────────────┐
-  │ Feature 42:  │ ────────> │ Add steering    │ ────>  │ Happier     │
-  │ "joyful"     │  inject   │ vector to T5    │ gen    │ music       │
-  │ (activation) │           │ conditioning    │        │ generated   │
-  └──────────────┘           └─────────────────┘        └─────────────┘
+T5 Embeddings SAE Training Learned Features
+┌┐ ┌┐ ┌┐
+768-dim > Sparse > 50-100 
+(100 train with Auto- find monosemantic 
+samples) L1 sparsity encoder features features 
+┘ ┘ ┘
+
+768 6144 768 Feature 42: "joyful"
+(8x overcomplete) Feature 108: "sad"
+Feature 221: "calm"
+
+┌┐
+PHASE 2: PLANNED 
+┘
+
+Learned Features Activation Steering MusicGen Output
+┌┐ ┌┐ ┌┐
+Feature 42: > Add steering > Happier 
+"joyful" inject vector to T5 gen music 
+(activation) conditioning generated 
+┘ ┘ ┘
 ```
 
 ---
 
-## 📂 File Organization
+## File Organization
 
-### 📚 Documentation (Start Here!)
+### Documentation (Start Here!)
 
 ```
 MusicGen/
-│
-├── PHASE0_TO_PHASE1_SUMMARY.md    ← 📊 PHASE 0 RESULTS & DISCOVERIES
-├── PHASE1_QUICKSTART.md           ← 🚀 START PHASE 1 (10 min guide)
-├── PHASE1_ROADMAP.md              ← 📋 Complete 3-week plan
-├── SYSTEM_OVERVIEW.md             ← 🗺️  This file (system map)
-├── README.md                      ← 📖 Project overview
-└── START_HERE.md                  ← 📂 Codebase navigation
+
+PHASE0_TO_PHASE1_SUMMARY.md PHASE 0 RESULTS & DISCOVERIES
+PHASE1_QUICKSTART.md START PHASE 1 (10 min guide)
+PHASE1_ROADMAP.md Complete 3-week plan
+SYSTEM_OVERVIEW.md ️ This file (system map)
+README.md Project overview
+START_HERE.md Codebase navigation
 ```
 
-### 🧠 Models & Algorithms
+### Models & Algorithms
 
 ```
 src/
-├── models/
-│   └── sparse_autoencoder.py     ← SAE implementation (768→6144→768)
-│                                     - L1 sparsity penalty
-│                                     - Dead feature reinitialization
-│                                     - Feature tracking
-│
-└── utils/
-    ├── activation_utils.py        ← MusicGen activation extraction
-    ├── audio_utils.py             ← Audio processing (librosa)
-    ├── dataset_utils.py           ← T5 embedding loading & batching
-    └── visualization_utils.py     ← Plotting utilities
+models/
+sparse_autoencoder.py SAE implementation (7686144768)
+- L1 sparsity penalty
+- Dead feature reinitialization
+- Feature tracking
+
+utils/
+activation_utils.py MusicGen activation extraction
+audio_utils.py Audio processing (librosa)
+dataset_utils.py T5 embedding loading & batching
+visualization_utils.py Plotting utilities
 ```
 
-### 🧪 Experiments & Scripts
+### Experiments & Scripts
 
 ```
 experiments/
-│
-├── extract_t5_embeddings_at_scale.py  ← Phase 0: Create T5 dataset
-│                                          Output: 100 embeddings
-│
-├── train_sae_on_t5_embeddings.py      ← Phase 1: Train SAE
-│                                          Input: T5 embeddings
-│                                          Output: Trained SAE model
-│
-└── analyze_sae_features.py            ← Phase 1: Analyze features
-                                           Input: Trained SAE
-                                           Output: Feature interpretations
+
+extract_t5_embeddings_at_scale.py Phase 0: Create T5 dataset
+Output: 100 embeddings
+
+train_sae_on_t5_embeddings.py Phase 1: Train SAE
+Input: T5 embeddings
+Output: Trained SAE model
+
+analyze_sae_features.py Phase 1: Analyze features
+Input: Trained SAE
+Output: Feature interpretations
 ```
 
-### 📊 Data & Results
+### Data & Results
 
 ```
 results/
-│
-├── t5_embeddings/                 ← Phase 0 output (COMPLETE ✅)
-│   ├── embeddings.npy                 100 × 768 T5 embeddings
-│   ├── labels.npy                     100 emotion labels
-│   ├── metadata.json                  Statistics & analysis
-│   └── emotion_clustering_pca.png     Visualization
-│
-├── sae_training/                  ← Phase 1 output (TO BE CREATED)
-│   └── [experiment_name]/
-│       ├── best_model.pt              Trained SAE weights
-│       ├── config.json                Hyperparameters
-│       ├── train_metrics.json         Training curves data
-│       └── training_curves.png        Loss/sparsity plots
-│
-└── sae_analysis/                  ← Phase 1 analysis (TO BE CREATED)
-    ├── feature_emotion_heatmap.png    Which features → which emotions
-    └── analysis_results.json          Selectivity scores, etc.
+
+t5_embeddings/ Phase 0 output (COMPLETE )
+embeddings.npy 100 × 768 T5 embeddings
+labels.npy 100 emotion labels
+metadata.json Statistics & analysis
+emotion_clustering_pca.png Visualization
+
+sae_training/ Phase 1 output (TO BE CREATED)
+[experiment_name]/
+best_model.pt Trained SAE weights
+config.json Hyperparameters
+train_metrics.json Training curves data
+training_curves.png Loss/sparsity plots
+
+sae_analysis/ Phase 1 analysis (TO BE CREATED)
+feature_emotion_heatmap.png Which features which emotions
+analysis_results.json Selectivity scores, etc.
 ```
 
 ---
 
-## 🔬 Key Components Explained
+## Key Components Explained
 
 ### 1. T5 Text Embeddings (Phase 0 Discovery)
 
@@ -152,7 +152,7 @@ encoder = T5EncoderModel.from_pretrained('t5-base')
 # Encode prompt
 tokens = tokenizer("happy upbeat music", return_tensors='pt')
 output = encoder(**tokens)
-embedding = output.last_hidden_state.mean(dim=1)  # [1, 768]
+embedding = output.last_hidden_state.mean(dim=1) # [1, 768]
 ```
 
 **Data location**: `results/t5_embeddings/embeddings.npy`
@@ -165,21 +165,21 @@ embedding = output.last_hidden_state.mean(dim=1)  # [1, 768]
 
 **Architecture**:
 ```
-Input:  768 (T5 embedding)
-   ↓
-Encoder: 768 → 6144 (ReLU activation)
-   ↓
+Input: 768 (T5 embedding)
+
+Encoder: 768 6144 (ReLU activation)
+
 Hidden: 6144 features (only ~50-200 active per sample)
-   ↓
-Decoder: 6144 → 768 (reconstruction)
-   ↓
+
+Decoder: 6144 768 (reconstruction)
+
 Output: 768 (reconstructed T5 embedding)
 ```
 
 **Training objective**:
 ```
 Loss = MSE(input, output) + λ * L1(hidden_activations)
-       └─ reconstruction   └─ sparsity penalty
+reconstruction sparsity penalty
 ```
 
 **Why overcomplete (6144 > 768)**:
@@ -203,14 +203,14 @@ Selectivity = max_emotion(activation_rate) / mean_all_emotions(activation_rate)
 **Example**:
 ```
 Feature 42 activation rates:
-  Happy:      80%  ← max
-  Sad:        10%
-  Calm:       15%
-  Energetic:  12%
+Happy: 80% max
+Sad: 10%
+Calm: 15%
+Energetic: 12%
 
-  Mean: (80 + 10 + 15 + 12) / 4 = 29.25%
+Mean: (80 + 10 + 15 + 12) / 4 = 29.25%
 
-  Selectivity = 80% / 29.25% = 2.74x
+Selectivity = 80% / 29.25% = 2.74x
 ```
 
 **Interpretation**:
@@ -222,67 +222,67 @@ Feature 42 activation rates:
 
 ---
 
-## ⚙️ How to Use This System
+## ️ How to Use This System
 
 ### Phase 1 Workflow
 
 ```
 Step 1: Train SAE
-─────────────────────────────────────────────
+
 $ python3 experiments/train_sae_on_t5_embeddings.py
 
 Expected output:
-  • Training progress bar (500 steps, ~10 min)
-  • Model saved to results/sae_training/
-  • Training curves plot
+• Training progress bar (500 steps, ~10 min)
+• Model saved to results/sae_training/
+• Training curves plot
 
 Success criteria:
-  ✅ Reconstruction MSE < 0.02
-  ✅ L0 = 50-500 active features
-  ✅ < 100 dead features
+Reconstruction MSE < 0.02
+L0 = 50-500 active features
+< 100 dead features
 
 
 Step 2: Analyze Features
-─────────────────────────────────────────────
+
 $ python3 experiments/analyze_sae_features.py
 
 Expected output:
-  • Feature-emotion heatmap
-  • List of selective features
-  • Selectivity scores
+• Feature-emotion heatmap
+• List of selective features
+• Selectivity scores
 
 Success criteria:
-  ✅ 50+ features with selectivity > 2.0
-  ✅ Features cluster by emotion
-  ✅ Top features have clear interpretations
+50+ features with selectivity > 2.0
+Features cluster by emotion
+Top features have clear interpretations
 
 
 Step 3: Hyperparameter Tuning
-─────────────────────────────────────────────
+
 Edit CONFIG in train_sae_on_t5_embeddings.py:
 
-l1_coefficient: 1e-3 → Try 3e-4, 3e-3, 1e-2
+l1_coefficient: 1e-3 Try 3e-4, 3e-3, 1e-2
 
 Pick model with:
-  ✅ Best reconstruction (MSE < 0.01)
-  ✅ Good sparsity (L0 = 50-200)
-  ✅ Most interpretable features
+Best reconstruction (MSE < 0.01)
+Good sparsity (L0 = 50-200)
+Most interpretable features
 ```
 
 ---
 
-## 🧮 Math & Theory (Simplified)
+## Math & Theory (Simplified)
 
 ### Why Emotions Are in T5 Embeddings
 
 **Hypothesis**: MusicGen pipeline is:
-1. **T5 encodes**: Text → Emotion representation
-2. **Transformer executes**: Emotion representation → Audio plan
-3. **EnCodec decodes**: Audio plan → Waveform
+1. **T5 encodes**: Text Emotion representation
+2. **Transformer executes**: Emotion representation Audio plan
+3. **EnCodec decodes**: Audio plan Waveform
 
 **Evidence from Phase 0**:
-- T5 embeddings: 25% emotion differentiation ✅
-- Transformer activations: 5% differentiation ❌
+- T5 embeddings: 25% emotion differentiation 
+- Transformer activations: 5% differentiation 
 - Conclusion: Emotion is in INPUT, not PROCESSING
 
 **Analogy**:
@@ -309,10 +309,10 @@ We were studying the cooking, not the ingredients!
 **Mathematical intuition**:
 ```
 Standard neuron (polysemantic):
-  neuron_42 = 0.3*"happy" + 0.5*"energetic" + 0.2*"major_key"
+neuron_42 = 0.3*"happy" + 0.5*"energetic" + 0.2*"major_key"
 
 SAE feature (monosemantic):
-  feature_42 = 0.95*"joyful_celebration" + 0.05*noise
+feature_42 = 0.95*"joyful_celebration" + 0.05*noise
 ```
 
 **Why it works**:
@@ -322,7 +322,7 @@ SAE feature (monosemantic):
 
 ---
 
-## 📊 Expected Phase 1 Results
+## Expected Phase 1 Results
 
 ### Quantitative Predictions
 
@@ -339,25 +339,25 @@ SAE feature (monosemantic):
 **Expected feature types**:
 
 1. **Emotion-specific**:
-   - Feature 42: "joyful celebration"
-   - Feature 108: "melancholic longing"
-   - Feature 221: "peaceful tranquility"
-   - Feature 334: "intense aggression"
+- Feature 42: "joyful celebration"
+- Feature 108: "melancholic longing"
+- Feature 221: "peaceful tranquility"
+- Feature 334: "intense aggression"
 
 2. **Emotion-modifying**:
-   - Feature 15: "intensity" (applies to any emotion)
-   - Feature 67: "subtlety" (opposite of intensity)
+- Feature 15: "intensity" (applies to any emotion)
+- Feature 67: "subtlety" (opposite of intensity)
 
 3. **Musical attributes**:
-   - Feature 89: "acoustic/organic"
-   - Feature 123: "electronic/synthetic"
+- Feature 89: "acoustic/organic"
+- Feature 123: "electronic/synthetic"
 
 4. **Compositional**:
-   - Combining happy feature + acoustic feature = "acoustic happy music"
+- Combining happy feature + acoustic feature = "acoustic happy music"
 
 ---
 
-## 🚨 Common Issues & Solutions
+## Common Issues & Solutions
 
 ### Issue: Poor Reconstruction (MSE > 0.05)
 
@@ -370,9 +370,9 @@ print(f"MSE: {output['loss_reconstruction'].item():.4f}")
 ```
 
 **Solutions**:
-1. Decrease L1 coefficient (3e-3 → 1e-3)
-2. Increase expansion factor (8x → 12x)
-3. Train longer (500 → 1000 epochs)
+1. Decrease L1 coefficient (3e-3 1e-3)
+2. Increase expansion factor (8x 12x)
+3. Train longer (500 1000 epochs)
 
 ---
 
@@ -385,7 +385,7 @@ print(f"Active features: {output['l0'].item():.0f}")
 ```
 
 **Solutions**:
-1. Increase L1 coefficient (1e-3 → 3e-3)
+1. Increase L1 coefficient (1e-3 3e-3)
 2. Check ReLU is working (should see clear 0/non-zero split)
 
 ---
@@ -401,15 +401,15 @@ $ python3 experiments/analyze_sae_features.py
 ```
 
 **Solutions**:
-1. Increase sparsity (higher L1) → forces specialization
-2. Scale up dataset (100 → 500 samples) → more diverse
-3. Increase capacity (8x → 12x or 16x) → more features
+1. Increase sparsity (higher L1) forces specialization
+2. Scale up dataset (100 500 samples) more diverse
+3. Increase capacity (8x 12x or 16x) more features
 
 ---
 
-## 🎯 Success Checklist
+## Success Checklist
 
-### ✅ Phase 0 (COMPLETE)
+### Phase 0 (COMPLETE)
 
 - [x] Validated emotion encoding (96% accuracy)
 - [x] Identified T5 embeddings as key representation
@@ -417,7 +417,7 @@ $ python3 experiments/analyze_sae_features.py
 - [x] Built SAE infrastructure
 - [x] Created training & analysis pipelines
 
-### 🔲 Phase 1 (NEXT)
+### Phase 1 (NEXT)
 
 **Week 1**:
 - [ ] Train baseline SAE
@@ -445,7 +445,7 @@ $ python3 experiments/analyze_sae_features.py
 
 ---
 
-## 📞 Quick Reference
+## Quick Reference
 
 ### Commands
 
@@ -487,49 +487,49 @@ ANALYSIS = 'results/sae_analysis/analysis_results.json'
 
 ```python
 CONFIG = {
-    'expansion_factor': 8,         # 768 * 8 = 6144 hidden dims
-    'l1_coefficient': 1e-3,        # Start here, tune later
-    'learning_rate': 1e-3,         # Adam learning rate
-    'batch_size': 16,              # For 100 samples
-    'num_epochs': 500,             # With early stopping
+'expansion_factor': 8, # 768 * 8 = 6144 hidden dims
+'l1_coefficient': 1e-3, # Start here, tune later
+'learning_rate': 1e-3, # Adam learning rate
+'batch_size': 16, # For 100 samples
+'num_epochs': 500, # With early stopping
 }
 ```
 
 ---
 
-## 🎓 Learning Resources
+## Learning Resources
 
 ### Papers (Essential)
 
 1. **Bricken et al. (2023)** - "Towards Monosemanticity"
-   - Core SAE methodology
-   - Read before Phase 1
+- Core SAE methodology
+- Read before Phase 1
 
 2. **Park et al. (2024)** - "Linear Representation Hypothesis"
-   - Why features are linear directions
-   - Theory for Phase 2
+- Why features are linear directions
+- Theory for Phase 2
 
 3. **Copet et al. (2023)** - "MusicGen Paper"
-   - Architecture details
-   - Background for the project
+- Architecture details
+- Background for the project
 
 ### Code Examples
 
 1. **SAE Training**:
-   - `experiments/train_sae_on_t5_embeddings.py`
-   - Full implementation with comments
+- `experiments/train_sae_on_t5_embeddings.py`
+- Full implementation with comments
 
 2. **Feature Analysis**:
-   - `experiments/analyze_sae_features.py`
-   - Selectivity computation
+- `experiments/analyze_sae_features.py`
+- Selectivity computation
 
 3. **T5 Embedding Extraction**:
-   - `experiments/extract_t5_embeddings_at_scale.py`
-   - Shows full pipeline
+- `experiments/extract_t5_embeddings_at_scale.py`
+- Shows full pipeline
 
 ---
 
-## 🚀 Next Action
+## Next Action
 
 **To start Phase 1 right now**:
 
@@ -546,4 +546,4 @@ Then review [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md) for next steps!
 
 ---
 
-*System ready. All components tested. Phase 1 begins now! 🎵🔬*
+*System ready. All components tested. Phase 1 begins now! *

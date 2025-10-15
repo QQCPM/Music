@@ -11,7 +11,7 @@
 
 I see **5 possible explanations**:
 
-#### 1. **We're Looking at the Wrong Layer** 🎯
+#### 1. **We're Looking at the Wrong Layer** 
 
 **Evidence**:
 - Only tested layer 12 (middle layer)
@@ -27,7 +27,7 @@ I see **5 possible explanations**:
 **How to test**:
 ```python
 # Extract from ALL layers
-layers_to_test = list(range(0, 24))  # All layers
+layers_to_test = list(range(0, 24)) # All layers
 # Find which layer shows maximum differentiation
 ```
 
@@ -35,7 +35,7 @@ layers_to_test = list(range(0, 24))  # All layers
 
 ---
 
-#### 2. **Prompts Are Too Generic** 📝
+#### 2. **Prompts Are Too Generic** 
 
 **Evidence**:
 - "happy music" vs "sad music" - very broad
@@ -44,8 +44,8 @@ layers_to_test = list(range(0, 24))  # All layers
 
 **Current prompts**:
 ```
-"happy upbeat cheerful music"  → Too generic
-"sad melancholic sorrowful music"  → Too generic
+"happy upbeat cheerful music" Too generic
+"sad melancholic sorrowful music" Too generic
 ```
 
 **Better prompts** (more specific):
@@ -63,18 +63,18 @@ layers_to_test = list(range(0, 24))  # All layers
 
 **How to test**: Generate with specific prompts, measure acoustic features
 
-**Expected if true**: Specific prompts → larger tempo/energy differences
+**Expected if true**: Specific prompts larger tempo/energy differences
 
 ---
 
-#### 3. **Wrong Similarity Metric** 📊
+#### 3. **Wrong Similarity Metric** 
 
 **Evidence**:
 - Cosine similarity measures angle, not magnitude
 - Might miss important differences in activation patterns
 
 **Problem with cosine similarity**:
-- If emotions shift ALL dimensions uniformly → similarity stays high
+- If emotions shift ALL dimensions uniformly similarity stays high
 - Cosine only measures direction, not scale
 
 **Alternative metrics to try**:
@@ -110,7 +110,7 @@ from utils import cka_similarity
 
 ---
 
-#### 4. **Looking at Wrong Aspect of Activations** 🔍
+#### 4. **Looking at Wrong Aspect of Activations** 
 
 **Evidence**:
 - Averaging over all timesteps might wash out signal
@@ -161,7 +161,7 @@ sad_magnitude = sad_activations.abs().mean()
 
 ---
 
-#### 5. **MusicGen Genuinely Doesn't Encode Emotions Much** 💭
+#### 5. **MusicGen Genuinely Doesn't Encode Emotions Much** 
 
 **Evidence**:
 - Acoustic features barely differ
@@ -176,7 +176,7 @@ sad_magnitude = sad_activations.abs().mean()
 **How to test**:
 - Try other models (Jukebox, AudioLDM)
 - Try other modalities (image, text - known to work)
-- If others work but music doesn't → interesting finding!
+- If others work but music doesn't interesting finding!
 
 **Expected if true**: No methodology finds strong signal in MusicGen
 
@@ -192,18 +192,18 @@ sad_magnitude = sad_activations.abs().mean()
 ```python
 # Test ALL layers
 for layer in range(24):
-    extractor = ActivationExtractor(model, layers=[layer])
+extractor = ActivationExtractor(model, layers=[layer])
 
-    # Generate 5 happy, 5 sad
-    happy_acts = [extractor.generate(["happy"]) for _ in range(5)]
-    sad_acts = [extractor.generate(["sad"]) for _ in range(5)]
+# Generate 5 happy, 5 sad
+happy_acts = [extractor.generate(["happy"]) for _ in range(5)]
+sad_acts = [extractor.generate(["sad"]) for _ in range(5)]
 
-    # Compute within vs between similarity
-    within_happy = compute_within_similarity(happy_acts)
-    between = compute_between_similarity(happy_acts, sad_acts)
+# Compute within vs between similarity
+within_happy = compute_within_similarity(happy_acts)
+between = compute_between_similarity(happy_acts, sad_acts)
 
-    signal_strength = within_happy - between
-    print(f"Layer {layer}: signal = {signal_strength:.4f}")
+signal_strength = within_happy - between
+print(f"Layer {layer}: signal = {signal_strength:.4f}")
 ```
 
 **Expected outcome**:
@@ -225,45 +225,45 @@ for layer in range(24):
 **Step 1**: Design extreme prompts
 ```python
 extreme_prompts = {
-    'happy': [
-        "euphoric dance party, 150 BPM, major key, celebration, bright",
-        "joyful children laughing and playing, upbeat xylophone",
-        "triumphant victory fanfare, brass section, energetic",
-    ],
-    'sad': [
-        "funeral dirge, 50 BPM, solo cello, crying, mournful, dark",
-        "rainy day melancholy, slow piano, somber, depressed",
-        "heartbreak ballad, minor key, sorrowful violin, tears",
-    ],
-    'angry': [
-        "aggressive death metal, screaming, distorted guitars, 180 BPM",
-        "violent rage, pounding drums, chaotic, harsh",
-    ],
-    'calm': [
-        "zen meditation, 40 BPM, soft flute, peaceful, silence",
-        "gentle lullaby, slow, quiet, soothing, sleep",
-    ]
+'happy': [
+"euphoric dance party, 150 BPM, major key, celebration, bright",
+"joyful children laughing and playing, upbeat xylophone",
+"triumphant victory fanfare, brass section, energetic",
+],
+'sad': [
+"funeral dirge, 50 BPM, solo cello, crying, mournful, dark",
+"rainy day melancholy, slow piano, somber, depressed",
+"heartbreak ballad, minor key, sorrowful violin, tears",
+],
+'angry': [
+"aggressive death metal, screaming, distorted guitars, 180 BPM",
+"violent rage, pounding drums, chaotic, harsh",
+],
+'calm': [
+"zen meditation, 40 BPM, soft flute, peaceful, silence",
+"gentle lullaby, slow, quiet, soothing, sleep",
+]
 }
 ```
 
 **Step 2**: Validate acoustically
 ```python
 for emotion, prompts in extreme_prompts.items():
-    for prompt in prompts:
-        audio = generate(prompt)
-        features = extract_features(audio)
+for prompt in prompts:
+audio = generate(prompt)
+features = extract_features(audio)
 
-        # Check if acoustic features match intention
-        if emotion == 'happy':
-            assert features['tempo'] > 120  # Fast
-            assert features['energy'] > 0.08  # Loud
-            assert features['mode'] == 'major'
-        # etc.
+# Check if acoustic features match intention
+if emotion == 'happy':
+assert features['tempo'] > 120 # Fast
+assert features['energy'] > 0.08 # Loud
+assert features['mode'] == 'major'
+# etc.
 ```
 
 **Step 3**: Keep only prompts that work
-- If acoustic features match → good prompt
-- If not → revise prompt
+- If acoustic features match good prompt
+- If not revise prompt
 
 **Expected outcome**:
 - Find 3-5 prompts per emotion that reliably produce different music
@@ -278,16 +278,16 @@ for emotion, prompts in extreme_prompts.items():
 **Method**:
 ```python
 metrics = {
-    'cosine': cosine_similarity,
-    'euclidean': euclidean_distance,
-    'cka': cka_similarity,
-    'mmd': maximum_mean_discrepancy,
-    'linear_probe': train_linear_classifier,
+'cosine': cosine_similarity,
+'euclidean': euclidean_distance,
+'cka': cka_similarity,
+'mmd': maximum_mean_discrepancy,
+'linear_probe': train_linear_classifier,
 }
 
 for metric_name, metric_fn in metrics.items():
-    score = metric_fn(happy_acts, sad_acts)
-    print(f"{metric_name}: {score:.4f}")
+score = metric_fn(happy_acts, sad_acts)
+print(f"{metric_name}: {score:.4f}")
 ```
 
 **Linear probe is KEY**:
@@ -295,22 +295,22 @@ for metric_name, metric_fn in metrics.items():
 # If a linear classifier can predict emotion from activations,
 # then emotion IS encoded (linearly separable)
 
-X = np.vstack([happy_acts, sad_acts])  # [40, d_model]
-y = [0]*20 + [1]*20  # labels
+X = np.vstack([happy_acts, sad_acts]) # [40, d_model]
+y = [0]*20 + [1]*20 # labels
 
 from sklearn.linear_model import LogisticRegression
 clf = LogisticRegression()
 scores = cross_val_score(clf, X, y, cv=5)
 
 print(f"Classification accuracy: {scores.mean():.2%}")
-# > 75% → emotion is encoded
-# < 60% → no encoding
+# > 75% emotion is encoded
+# < 60% no encoding
 ```
 
 **Expected outcome**:
-- If one metric works → use it going forward
-- If linear probe works → emotions are linearly encoded (good for SAEs!)
-- If nothing works → weak signal confirmed
+- If one metric works use it going forward
+- If linear probe works emotions are linearly encoded (good for SAEs!)
+- If nothing works weak signal confirmed
 
 ---
 
@@ -324,11 +324,11 @@ print(f"Classification accuracy: {scores.mean():.2%}")
 ```python
 # For each timestep, compute happy vs sad similarity
 for t in range(num_timesteps):
-    happy_t = happy_acts[:, t, ...]
-    sad_t = sad_acts[:, t, ...]
-    sim_t = cosine_similarity(happy_t, sad_t)
+happy_t = happy_acts[:, t, ...]
+sad_t = sad_acts[:, t, ...]
+sim_t = cosine_similarity(happy_t, sad_t)
 
-    plt.plot(t, sim_t)
+plt.plot(t, sim_t)
 
 # Look for timesteps where similarity DROPS
 # Those timesteps encode emotion
@@ -345,7 +345,7 @@ sad_var = sad_acts.var(dim=0).mean()
 print(f"Happy variance: {happy_var:.4f}")
 print(f"Sad variance: {sad_var:.4f}")
 
-# If happy_var > sad_var * 1.5 → signal!
+# If happy_var > sad_var * 1.5 signal!
 ```
 
 **C) Spectral analysis**:
@@ -373,22 +373,22 @@ sad_fft = np.abs(fft(sad_acts, axis=0))
 **Method**:
 ```python
 models_to_test = [
-    'facebook/musicgen-small',
-    'facebook/musicgen-medium',
-    'facebook/musicgen-large',
-    # 'facebook/musicgen-melody',  # Conditioned on melody
+'facebook/musicgen-small',
+'facebook/musicgen-medium',
+'facebook/musicgen-large',
+# 'facebook/musicgen-melody', # Conditioned on melody
 ]
 
 for model_name in models_to_test:
-    model = load_model(model_name)
-    signal = measure_emotion_signal(model)
-    print(f"{model_name}: signal = {signal:.4f}")
+model = load_model(model_name)
+signal = measure_emotion_signal(model)
+print(f"{model_name}: signal = {signal:.4f}")
 ```
 
 **Expected outcome**:
-- If larger models show stronger signal → size matters
-- If all models show weak signal → architecture issue
-- If melody model works → conditioning helps
+- If larger models show stronger signal size matters
+- If all models show weak signal architecture issue
+- If melody model works conditioning helps
 
 ---
 
@@ -511,95 +511,95 @@ All of these are **publishable negative results**.
 
 ```python
 def layer_sweep(model, prompts):
-    """Test all layers, return best"""
-    results = {}
-    for layer in range(24):
-        signal = test_layer(model, layer, prompts)
-        results[layer] = signal
-    return max(results, key=results.get)
+"""Test all layers, return best"""
+results = {}
+for layer in range(24):
+signal = test_layer(model, layer, prompts)
+results[layer] = signal
+return max(results, key=results.get)
 
 def prompt_validation(prompts):
-    """Test which prompts produce different audio"""
-    valid_prompts = {}
-    for emotion, prompt_list in prompts.items():
-        valid = []
-        for prompt in prompt_list:
-            audio = generate(prompt)
-            features = extract_features(audio)
-            if validate_features(emotion, features):
-                valid.append(prompt)
-        valid_prompts[emotion] = valid
-    return valid_prompts
+"""Test which prompts produce different audio"""
+valid_prompts = {}
+for emotion, prompt_list in prompts.items():
+valid = []
+for prompt in prompt_list:
+audio = generate(prompt)
+features = extract_features(audio)
+if validate_features(emotion, features):
+valid.append(prompt)
+valid_prompts[emotion] = valid
+return valid_prompts
 
 def within_vs_between_test(activations_by_emotion):
-    """Proper statistical test"""
-    within_sims = []
-    between_sims = []
+"""Proper statistical test"""
+within_sims = []
+between_sims = []
 
-    for emotion, acts in activations_by_emotion.items():
-        # Within-emotion similarity
-        for i in range(len(acts)):
-            for j in range(i+1, len(acts)):
-                sim = cosine_similarity(acts[i], acts[j])
-                within_sims.append(sim)
+for emotion, acts in activations_by_emotion.items():
+# Within-emotion similarity
+for i in range(len(acts)):
+for j in range(i+1, len(acts)):
+sim = cosine_similarity(acts[i], acts[j])
+within_sims.append(sim)
 
-    # Between-emotion similarity
-    for e1, acts1 in activations_by_emotion.items():
-        for e2, acts2 in activations_by_emotion.items():
-            if e1 >= e2: continue
-            for a1 in acts1:
-                for a2 in acts2:
-                    sim = cosine_similarity(a1, a2)
-                    between_sims.append(sim)
+# Between-emotion similarity
+for e1, acts1 in activations_by_emotion.items():
+for e2, acts2 in activations_by_emotion.items():
+if e1 >= e2: continue
+for a1 in acts1:
+for a2 in acts2:
+sim = cosine_similarity(a1, a2)
+between_sims.append(sim)
 
-    # Statistical test
-    from scipy.stats import ttest_ind
-    t_stat, p_value = ttest_ind(within_sims, between_sims)
+# Statistical test
+from scipy.stats import ttest_ind
+t_stat, p_value = ttest_ind(within_sims, between_sims)
 
-    mean_within = np.mean(within_sims)
-    mean_between = np.mean(between_sims)
+mean_within = np.mean(within_sims)
+mean_between = np.mean(between_sims)
 
-    return {
-        'within': mean_within,
-        'between': mean_between,
-        'difference': mean_within - mean_between,
-        'p_value': p_value,
-        'significant': p_value < 0.05
-    }
+return {
+'within': mean_within,
+'between': mean_between,
+'difference': mean_within - mean_between,
+'p_value': p_value,
+'significant': p_value < 0.05
+}
 
 def main():
-    # 1. Load model
-    model = MusicGen.get_pretrained('facebook/musicgen-large')
+# 1. Load model
+model = MusicGen.get_pretrained('facebook/musicgen-large')
 
-    # 2. Layer sweep
-    print("Phase 1: Layer sweep...")
-    best_layer = layer_sweep(model, initial_prompts)
-    print(f"Best layer: {best_layer}")
+# 2. Layer sweep
+print("Phase 1: Layer sweep...")
+best_layer = layer_sweep(model, initial_prompts)
+print(f"Best layer: {best_layer}")
 
-    # 3. Prompt validation
-    print("Phase 2: Prompt validation...")
-    valid_prompts = prompt_validation(extreme_prompts)
+# 3. Prompt validation
+print("Phase 2: Prompt validation...")
+valid_prompts = prompt_validation(extreme_prompts)
 
-    # 4. Generate large dataset with best layer + prompts
-    print("Phase 3: Generating dataset...")
-    activations = generate_dataset(model, best_layer, valid_prompts, n=20)
+# 4. Generate large dataset with best layer + prompts
+print("Phase 3: Generating dataset...")
+activations = generate_dataset(model, best_layer, valid_prompts, n=20)
 
-    # 5. Within vs between test
-    print("Phase 4: Statistical test...")
-    results = within_vs_between_test(activations)
+# 5. Within vs between test
+print("Phase 4: Statistical test...")
+results = within_vs_between_test(activations)
 
-    print(f"\nResults:")
-    print(f"  Within-emotion: {results['within']:.4f}")
-    print(f"  Between-emotion: {results['between']:.4f}")
-    print(f"  Difference: {results['difference']:.4f}")
-    print(f"  P-value: {results['p_value']:.4f}")
-    print(f"  Significant: {results['significant']}")
+print(f"\nResults:")
+print(f" Within-emotion: {results['within']:.4f}")
+print(f" Between-emotion: {results['between']:.4f}")
+print(f" Difference: {results['difference']:.4f}")
+print(f" P-value: {results['p_value']:.4f}")
+print(f" Significant: {results['significant']}")
 
-    # 6. Decision
-    if results['significant'] and results['difference'] > 0.02:
-        print("\n✅ SIGNAL FOUND! Proceed to Phase 1 (SAE training)")
-    else:
-        print("\n⚠️ WEAK/NO SIGNAL. Consider pivot.")
+# 6. Decision
+if results['significant'] and results['difference'] > 0.02:
+print("\n SIGNAL FOUND! Proceed to Phase 1 (SAE training)")
+else:
+print("\n️ WEAK/NO SIGNAL. Consider pivot.")
 ```
 
 ---

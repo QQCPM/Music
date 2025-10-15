@@ -11,9 +11,9 @@ python3 scripts/setup_environment.py
 ```
 
 This will check:
-- ✅ Python 3.9+
-- ✅ FFmpeg installation
-- ✅ Directory structure
+- Python 3.9+
+- FFmpeg installation
+- Directory structure
 
 ---
 
@@ -23,7 +23,7 @@ This will check:
 ```bash
 # Create virtual environment (recommended)
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate # On Windows: venv\Scripts\activate
 
 # Install all dependencies
 pip install -r requirements.txt
@@ -62,13 +62,13 @@ This will show:
 
 **Expected Output**:
 ```
-✅ CUDA GPU detected
-   GPU 0: NVIDIA RTX 4090
-   - VRAM: 24.00 GB
+CUDA GPU detected
+GPU 0: NVIDIA RTX 4090
+- VRAM: 24.00 GB
 
-   Recommendations:
-   ✅ Can run MusicGen Large (3.3B)
-   ✅ Can run MusicGen Stereo Large (3.3B)
+Recommendations:
+Can run MusicGen Large (3.3B)
+Can run MusicGen Stereo Large (3.3B)
 ```
 
 ---
@@ -106,8 +106,8 @@ python3 scripts/download_models.py all
 **Storage Requirements**:
 - Small (300M): ~1.2 GB
 - Medium (1.5B): ~6 GB
-- **Large (3.3B): ~13 GB** ← Your choice
-- **Stereo Large (3.3B): ~13 GB** ← Recommended
+- **Large (3.3B): ~13 GB** Your choice
+- **Stereo Large (3.3B): ~13 GB** Recommended
 
 ---
 
@@ -124,13 +124,13 @@ print("Loading MusicGen Large (3.3B)...")
 model = MusicGen.get_pretrained('facebook/musicgen-large')
 
 # Set generation parameters
-model.set_generation_params(duration=8)  # 8 seconds
+model.set_generation_params(duration=8) # 8 seconds
 
 # Generate music!
 print("Generating music...")
 descriptions = [
-    "happy upbeat electronic dance music",
-    "sad melancholic piano ballad"
+"happy upbeat electronic dance music",
+"sad melancholic piano ballad"
 ]
 
 wav = model.generate(descriptions)
@@ -138,15 +138,15 @@ wav = model.generate(descriptions)
 # Save outputs
 from audiocraft.data.audio import audio_write
 for idx, one_wav in enumerate(wav):
-    # Save as WAV file
-    audio_write(
-        f'results/test_output_{idx}',
-        one_wav.cpu(),
-        model.sample_rate,
-        strategy="loudness"
-    )
+# Save as WAV file
+audio_write(
+f'results/test_output_{idx}',
+one_wav.cpu(),
+model.sample_rate,
+strategy="loudness"
+)
 
-print("✅ Music generated! Check results/test_output_*.wav")
+print(" Music generated! Check results/test_output_*.wav")
 ```
 
 **Save this as** `test_musicgen.py` and run:
@@ -168,18 +168,18 @@ model = MusicGen.get_pretrained('facebook/musicgen-large')
 activations = {}
 
 def get_activation(name):
-    """Hook function to capture layer outputs"""
-    def hook(module, input, output):
-        activations[name] = output.detach().cpu()
-    return hook
+"""Hook function to capture layer outputs"""
+def hook(module, input, output):
+activations[name] = output.detach().cpu()
+return hook
 
 # Register hooks on specific layers
 # MusicGen Large has 24 transformer layers
 layers_to_probe = [0, 6, 12, 18, 24]
 
 for layer_idx in layers_to_probe:
-    layer = model.lm.layers[layer_idx]
-    layer.register_forward_hook(get_activation(f'layer_{layer_idx}'))
+layer = model.lm.layers[layer_idx]
+layer.register_forward_hook(get_activation(f'layer_{layer_idx}'))
 
 # Generate with hooks active
 print("Generating with activation capture...")
@@ -190,12 +190,12 @@ wav = model.generate(prompts)
 # Inspect activations
 print("\nCaptured Activations:")
 for name, activation in activations.items():
-    print(f"{name}: shape = {activation.shape}")
-    # Expected shape: [batch_size, sequence_length, d_model]
+print(f"{name}: shape = {activation.shape}")
+# Expected shape: [batch_size, sequence_length, d_model]
 
 # Save activations for later analysis
 torch.save(activations, 'results/first_activations.pt')
-print("\n✅ Activations saved to results/first_activations.pt")
+print("\n Activations saved to results/first_activations.pt")
 ```
 
 **Save this as** `test_activations.py` and run:
@@ -253,9 +253,9 @@ pip install git+https://github.com/facebookresearch/audiocraft.git
 ### Issue: Very slow on Apple Silicon
 **Solutions**:
 1. Ensure you're using MPS backend:
-   ```python
-   device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-   ```
+```python
+device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+```
 2. Close other applications to free RAM
 3. Consider using smaller model or cloud GPU
 
@@ -303,10 +303,10 @@ If you don't have a local GPU with 24GB+ VRAM:
 
 ## Next Steps
 
-1. ✅ Everything installed? → Start [Phase 0 Learning Roadmap](docs/phase0_roadmap.md)
-2. ✅ Generated first music? → Experiment with different prompts
-3. ✅ Captured activations? → Visualize them in a Jupyter notebook
-4. ✅ Questions? → Check the main [README.md](README.md)
+1. Everything installed? Start [Phase 0 Learning Roadmap](docs/phase0_roadmap.md)
+2. Generated first music? Experiment with different prompts
+3. Captured activations? Visualize them in a Jupyter notebook
+4. Questions? Check the main [README.md](README.md)
 
 ---
 

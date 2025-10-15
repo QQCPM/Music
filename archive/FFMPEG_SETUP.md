@@ -6,12 +6,12 @@ FFmpeg is an optional but recommended dependency for MusicGen audio processing. 
 
 ## Do You Need FFmpeg?
 
-### ✅ You DON'T need FFmpeg if:
+### You DON'T need FFmpeg if:
 - You're just doing activation extraction and analysis
 - You're okay with basic WAV file output (using our soundfile fallback)
 - You're testing code and don't need high-quality audio
 
-### 🎵 You DO need FFmpeg if:
+### You DO need FFmpeg if:
 - You want the best audio quality
 - You want to save in formats other than WAV (MP3, OGG, etc.)
 - You want loudness normalization and compression
@@ -28,10 +28,10 @@ which ffmpeg
 ```
 
 **If you see a path** (e.g., `/usr/local/bin/ffmpeg`):
-✅ FFmpeg is installed!
+FFmpeg is installed!
 
 **If you see** `ffmpeg not found`:
-❌ FFmpeg is NOT installed (this is your current situation)
+FFmpeg is NOT installed (this is your current situation)
 
 ---
 
@@ -74,7 +74,7 @@ You should see:
 ffmpeg version 6.x.x ...
 ```
 
-✅ Done! FFmpeg is now installed.
+Done! FFmpeg is now installed.
 
 ---
 
@@ -114,7 +114,7 @@ source ~/.zshrc
 ffmpeg -version
 ```
 
-✅ Done!
+Done!
 
 ---
 
@@ -125,12 +125,12 @@ ffmpeg -version
 Our code automatically detects if FFmpeg is available and uses the appropriate method.
 
 **What you get:**
-- ✅ Audio files work
-- ✅ WAV format (widely compatible)
-- ✅ Basic normalization
-- ❌ No loudness compression
-- ❌ No MP3/OGG export
-- ❌ Slightly lower quality
+- Audio files work
+- WAV format (widely compatible)
+- Basic normalization
+- No loudness compression
+- No MP3/OGG export
+- Slightly lower quality
 
 **No changes needed** - the code handles this automatically!
 
@@ -157,8 +157,8 @@ save_audio(wav, "output", sample_rate=32000, use_ffmpeg=False)
 
 You'll see a warning if FFmpeg is not found:
 ```
-⚠️  FFmpeg not found. Using soundfile fallback.
-   Install FFmpeg for better quality: brew install ffmpeg
+️ FFmpeg not found. Using soundfile fallback.
+Install FFmpeg for better quality: brew install ffmpeg
 ```
 
 ---
@@ -179,7 +179,7 @@ import torch
 from src.utils.audio_utils import save_audio
 
 # Create dummy audio
-dummy_audio = torch.randn(1, 32000)  # 1 second of random audio
+dummy_audio = torch.randn(1, 32000) # 1 second of random audio
 
 # Test with FFmpeg (if available)
 save_audio(dummy_audio, "results/test_ffmpeg", use_ffmpeg=True)
@@ -187,7 +187,7 @@ save_audio(dummy_audio, "results/test_ffmpeg", use_ffmpeg=True)
 # Test with soundfile fallback
 save_audio(dummy_audio, "results/test_soundfile", use_ffmpeg=False)
 
-print("✅ Both methods work!")
+print(" Both methods work!")
 ```
 
 ---
@@ -224,7 +224,7 @@ export PATH="/usr/local/bin:$PATH"
 
 Then reload:
 ```bash
-source ~/.zshrc  # or source ~/.bash_profile
+source ~/.zshrc # or source ~/.bash_profile
 ```
 
 ### Issue: "soundfile not found"
@@ -263,16 +263,16 @@ Even if you start with soundfile fallback, **plan to install FFmpeg eventually**
 
 | Method | Quality | Setup Time | Recommendation |
 |--------|---------|-----------|----------------|
-| FFmpeg via Homebrew | ⭐⭐⭐⭐⭐ | 10-15 min | Best for research |
-| FFmpeg direct | ⭐⭐⭐⭐⭐ | 15-20 min | If no Homebrew |
-| Soundfile fallback | ⭐⭐⭐ | 0 min | Works immediately |
+| FFmpeg via Homebrew | | 10-15 min | Best for research |
+| FFmpeg direct | | 15-20 min | If no Homebrew |
+| Soundfile fallback | | 0 min | Works immediately |
 
 ---
 
 ## Current Project Status
 
-✅ **Your code now works WITHOUT FFmpeg** (uses soundfile fallback)
-⚠️  **But you should install FFmpeg for better results**
+**Your code now works WITHOUT FFmpeg** (uses soundfile fallback)
+️ **But you should install FFmpeg for better results**
 
 To install FFmpeg now:
 ```bash
@@ -293,14 +293,14 @@ Then your code will automatically use the better method!
 ## Questions?
 
 - **How do I know which method is being used?**
-  - You'll see "Using soundfile fallback" if FFmpeg is not found
+- You'll see "Using soundfile fallback" if FFmpeg is not found
 
 - **Will my existing code work?**
-  - Yes! The fallback is automatic.
+- Yes! The fallback is automatic.
 
 - **Should I change my code?**
-  - No changes needed. Install FFmpeg when you can, and the code will automatically use it.
+- No changes needed. Install FFmpeg when you can, and the code will automatically use it.
 
 ---
 
-**Updated**: Audio saving now works with or without FFmpeg! 🎵
+**Updated**: Audio saving now works with or without FFmpeg! 

@@ -15,7 +15,7 @@ Let me think from first principles about what's actually happening...
 - Maybe emotions are encoded in the CHANGE/DYNAMICS, not static patterns
 - Maybe emotions are in relationships BETWEEN layers, not within layers
 
-**Assumption 2**: Similar emotions → similar activations
+**Assumption 2**: Similar emotions similar activations
 - But what if the model encodes INSTRUCTIONS not EMOTIONS?
 - "Generate happy music" might produce similar activation paths regardless of execution
 - The AUDIO differs, but the COMPUTATIONAL PROCESS might be similar
@@ -33,14 +33,14 @@ Let me trace EXACTLY what happens:
 
 ```
 1. Text prompt "happy music"
-   ↓
-2. T5 encoder → text embedding [batch, seq_len, 768]
-   ↓
+
+2. T5 encoder text embedding [batch, seq_len, 768]
+
 3. Cross-attention conditioning in transformer
-   ↓
+
 4. Autoregressive generation of audio tokens
-   ↓
-5. EnCodec decoder → waveform
+
+5. EnCodec decoder waveform
 ```
 
 **Where are we looking?**
@@ -48,16 +48,16 @@ Let me trace EXACTLY what happens:
 
 **Where SHOULD we look?**
 - **Option A**: T5 text embeddings (before generation)
-  - Do "happy" and "sad" have different T5 embeddings?
-  - This is the INPUT - maybe emotion is already here
+- Do "happy" and "sad" have different T5 embeddings?
+- This is the INPUT - maybe emotion is already here
 
 - **Option B**: Audio tokens (after generation)
-  - Do different emotions produce different token sequences?
-  - This is the OUTPUT representation
+- Do different emotions produce different token sequences?
+- This is the OUTPUT representation
 
 - **Option C**: Cross-attention maps
-  - Does the model attend to text differently for different emotions?
-  - This shows HOW emotion influences generation
+- Does the model attend to text differently for different emotions?
+- This shows HOW emotion influences generation
 
 **We've been looking at WRONG PLACE!**
 
@@ -77,14 +77,14 @@ MusicGen might work like this:
 
 ```
 Text: "happy music"
-  ↓
+
 T5 encoding: [semantic representation of "happy"]
-  ↓
+
 Transformer: Execute generation process
-  - The PROCESS is similar for all emotions
-  - Different music comes from different INITIAL CONDITIONS
-  - Not from different COMPUTATIONAL PATHS
-  ↓
+- The PROCESS is similar for all emotions
+- Different music comes from different INITIAL CONDITIONS
+- Not from different COMPUTATIONAL PATHS
+
 Audio tokens: Different for happy vs sad
 ```
 
@@ -120,11 +120,11 @@ prompts = ["happy music", "sad music", "calm music", "energetic music"]
 embeddings = []
 
 for prompt in prompts:
-    tokens = tokenizer(prompt, return_tensors='pt')
-    output = encoder(**tokens)
-    # Get [CLS] token or mean pooling
-    emb = output.last_hidden_state.mean(dim=1)
-    embeddings.append(emb)
+tokens = tokenizer(prompt, return_tensors='pt')
+output = encoder(**tokens)
+# Get [CLS] token or mean pooling
+emb = output.last_hidden_state.mean(dim=1)
+embeddings.append(emb)
 
 # Compare embeddings
 similarity_matrix = compute_similarity_matrix(embeddings)
@@ -147,9 +147,9 @@ print(similarity_matrix)
 
 # Modify ActivationExtractor to capture output tokens
 def capture_tokens(model, prompt):
-    # Get the discrete token sequence
-    # This is what EnCodec decodes into audio
-    ...
+# Get the discrete token sequence
+# This is what EnCodec decodes into audio
+...
 
 # Compare token sequences
 happy_tokens = capture_tokens(model, "happy music")
@@ -177,13 +177,13 @@ overlap = len(unique_tokens_happy & unique_tokens_sad)
 # This shows which TEXT tokens influence which GENERATION steps
 
 class AttentionExtractor:
-    def __init__(self, model):
-        self.attentions = []
+def __init__(self, model):
+self.attentions = []
 
-    def hook(self, module, input, output):
-        # Capture cross-attention weights
-        # Shape: [batch, heads, seq_len, text_len]
-        self.attentions.append(output[1])  # attention weights
+def hook(self, module, input, output):
+# Capture cross-attention weights
+# Shape: [batch, heads, seq_len, text_len]
+self.attentions.append(output[1]) # attention weights
 
 # Register on cross-attention layers
 extractor = AttentionExtractor(model)
@@ -217,11 +217,11 @@ Maybe emotions aren't in STATIC activations but in DYNAMICS:
 # Instead of: mean activation across time
 # Look at: how activation CHANGES over time
 
-happy_acts = extract_all_timesteps("happy music")  # [T, d_model]
+happy_acts = extract_all_timesteps("happy music") # [T, d_model]
 sad_acts = extract_all_timesteps("sad music")
 
 # Compute derivatives
-happy_velocity = np.diff(happy_acts, axis=0)  # rate of change
+happy_velocity = np.diff(happy_acts, axis=0) # rate of change
 sad_velocity = np.diff(sad_acts, axis=0)
 
 # Compare dynamics, not states
@@ -293,37 +293,37 @@ sad_factors = factors[sad_indices]
 
 ```python
 def comprehensive_emotion_test(model):
-    """
-    Test emotion encoding at ALL levels
-    """
-    results = {}
+"""
+Test emotion encoding at ALL levels
+"""
+results = {}
 
-    # Level 1: Text embeddings
-    results['text_embedding'] = test_text_embeddings()
+# Level 1: Text embeddings
+results['text_embedding'] = test_text_embeddings()
 
-    # Level 2: Transformer activations (what we did)
-    results['transformer_hidden'] = test_transformer_activations()
+# Level 2: Transformer activations (what we did)
+results['transformer_hidden'] = test_transformer_activations()
 
-    # Level 3: Audio tokens
-    results['audio_tokens'] = test_audio_tokens()
+# Level 3: Audio tokens
+results['audio_tokens'] = test_audio_tokens()
 
-    # Level 4: Cross-attention
-    results['cross_attention'] = test_attention_patterns()
+# Level 4: Cross-attention
+results['cross_attention'] = test_attention_patterns()
 
-    # Level 5: Temporal dynamics
-    results['temporal_dynamics'] = test_activation_dynamics()
+# Level 5: Temporal dynamics
+results['temporal_dynamics'] = test_activation_dynamics()
 
-    # Level 6: Compositional structure
-    results['compositional'] = test_factor_structure()
+# Level 6: Compositional structure
+results['compositional'] = test_factor_structure()
 
-    # Find where emotion IS encoded
-    for level, score in results.items():
-        print(f"{level}: {score:.4f}")
+# Find where emotion IS encoded
+for level, score in results.items():
+print(f"{level}: {score:.4f}")
 
-    best_level = max(results, key=results.get)
-    print(f"\nEmotion is encoded in: {best_level}")
+best_level = max(results, key=results.get)
+print(f"\nEmotion is encoded in: {best_level}")
 
-    return results
+return results
 ```
 
 ---
@@ -367,7 +367,7 @@ def comprehensive_emotion_test(model):
 
 **Day 3**: Cross-attention analysis
 ```python
-# Extract attention weights text → generation
+# Extract attention weights text generation
 # See if "happy" vs "sad" causes different attention
 # Expected: Different attention to text tokens
 ```
@@ -435,29 +435,29 @@ Understanding HOW emotion is encoded:
 
 ### If emotion is in TEXT EMBEDDINGS
 - T5 embedding similarity: < 0.7
-- Transformer activation similarity: > 0.9 ✓ (matches observation!)
+- Transformer activation similarity: > 0.9 (matches observation!)
 - Audio tokens: Different
 - **Interpretation**: Emotion is in the INSTRUCTION
 
 ### If emotion is in AUDIO TOKENS
 - T5 embedding similarity: > 0.8
-- Transformer activation similarity: > 0.9 ✓ (matches observation!)
+- Transformer activation similarity: > 0.9 (matches observation!)
 - Audio tokens: Very different
 - **Interpretation**: Emotion is in the OUTPUT, not process
 
 ### If emotion is in ATTENTION
 - T5 embeddings: Similar
-- Transformer activations: Similar ✓ (matches observation!)
+- Transformer activations: Similar (matches observation!)
 - Attention patterns: Very different
 - **Interpretation**: Emotion is in HOW text conditions generation
 
 ### If emotion is in DYNAMICS
-- Static activations: Similar ✓ (matches observation!)
+- Static activations: Similar (matches observation!)
 - Activation velocity: Very different
 - **Interpretation**: Emotion is in the TRAJECTORY
 
 ### If emotion is COMPOSITIONAL
-- Raw activations: Similar ✓ (matches observation!)
+- Raw activations: Similar (matches observation!)
 - Factor space: Different
 - **Interpretation**: Emotion is in COMBINATIONS
 
@@ -503,7 +503,7 @@ Understanding HOW emotion is encoded:
 **Observation 2**: Audio DOES sound different
 **Explanation**: Because emotion is in the OUTPUT (tokens) not process
 
-**Observation 3**: Temporal dynamics show divergence (0.956 → 0.929)
+**Observation 3**: Temporal dynamics show divergence (0.956 0.929)
 **Explanation**: Even though states are similar, TRAJECTORIES differ
 
 **Observation 4**: Acoustic features somewhat differ
@@ -526,38 +526,38 @@ Understanding HOW emotion is encoded:
 ### Must Do IMMEDIATELY (Day 1)
 
 1. **Text embedding analysis** - 2 hours
-   - Simplest test
-   - If emotions differ here, case closed
-   - This should have been FIRST TEST
+- Simplest test
+- If emotions differ here, case closed
+- This should have been FIRST TEST
 
 2. **Audio token analysis** - 3 hours
-   - Capture token sequences
-   - Compare distributions
-   - This is where output is determined
+- Capture token sequences
+- Compare distributions
+- This is where output is determined
 
 ### Should Do (Day 2-3)
 
 3. **Cross-attention analysis** - 4 hours
-   - Extract attention weights
-   - See how text conditions generation
-   - This shows HOW emotion influences process
+- Extract attention weights
+- See how text conditions generation
+- This shows HOW emotion influences process
 
 4. **Temporal dynamics** - 3 hours
-   - Compute activation velocities
-   - Compare trajectories
-   - We saw hints of this (0.027 divergence)
+- Compute activation velocities
+- Compare trajectories
+- We saw hints of this (0.027 divergence)
 
 ### Nice to Have (Day 4-5)
 
 5. **Compositional analysis** - 4 hours
-   - Factor analysis / PCA
-   - Look at combinations
-   - More sophisticated
+- Factor analysis / PCA
+- Look at combinations
+- More sophisticated
 
 6. **Layer sweep** - 6 hours
-   - Still valuable
-   - But less urgent
-   - Do AFTER finding right representation
+- Still valuable
+- But less urgent
+- Do AFTER finding right representation
 
 ---
 
@@ -583,28 +583,28 @@ encoder = T5EncoderModel.from_pretrained('t5-base')
 
 # Test prompts
 emotions = {
-    'happy': "happy cheerful upbeat music",
-    'sad': "sad melancholic sorrowful music",
-    'calm': "calm peaceful relaxing music",
-    'energetic': "energetic intense powerful music"
+'happy': "happy cheerful upbeat music",
+'sad': "sad melancholic sorrowful music",
+'calm': "calm peaceful relaxing music",
+'energetic': "energetic intense powerful music"
 }
 
 # Extract embeddings
 embeddings = {}
 for emotion, prompt in emotions.items():
-    tokens = tokenizer(prompt, return_tensors='pt')
-    with torch.no_grad():
-        output = encoder(**tokens)
-    # Mean pooling
-    emb = output.last_hidden_state.mean(dim=1)
-    embeddings[emotion] = emb
+tokens = tokenizer(prompt, return_tensors='pt')
+with torch.no_grad():
+output = encoder(**tokens)
+# Mean pooling
+emb = output.last_hidden_state.mean(dim=1)
+embeddings[emotion] = emb
 
 # Compute all pairwise similarities
 for e1 in emotions:
-    for e2 in emotions:
-        if e1 < e2:
-            sim = cosine_similarity(embeddings[e1], embeddings[e2])
-            print(f"{e1} vs {e2}: {sim:.4f}")
+for e2 in emotions:
+if e1 < e2:
+sim = cosine_similarity(embeddings[e1], embeddings[e2])
+print(f"{e1} vs {e2}: {sim:.4f}")
 
 # If similarities < 0.8, emotion IS in text embedding!
 ```
