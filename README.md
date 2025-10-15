@@ -24,7 +24,7 @@ source venv/bin/activate
 # 2. Train SAE on T5 embeddings 
 python3 experiments/train_sae_on_t5_embeddings.py
 
-# 3. Analyze features (
+# 3. Analyze features 
 python3 experiments/analyze_sae_features.py
 ```
 ---
