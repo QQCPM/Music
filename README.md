@@ -97,7 +97,6 @@ Evidence the model "understands" emotion:
 
 ### Learning
 - **ARENA**: [Transformer Interpretability](https://arena3-chapter1-transformer-interp.streamlit.app/)
-- **Phase 0 Roadmap**: [docs/phase0_roadmap.md](docs/phase0_roadmap.md)
 
 ### Datasets (To Download)
 - **PMEmo**: 794 songs with valence/arousal
