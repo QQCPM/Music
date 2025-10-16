@@ -37,8 +37,6 @@ python3 experiments/analyze_sae_features.py
 - Linear probe accuracy: 96%
 - Statistical significance: p < 0.000001
 
-** Phase 1 plan**: [PHASE1_ROADMAP.md](PHASE1_ROADMAP.md) | ** Quick start**: [PHASE1_QUICKSTART.md](PHASE1_QUICKSTART.md)
-
 ---
 
 ## Key Results
@@ -54,19 +52,15 @@ python3 experiments/analyze_sae_features.py
 
 **Conclusion**: Emotions are represented differently in MusicGen's internal activations.
 
-** Technical details**: [ACTIVATION_EXTRACTION_FIX.md](ACTIVATION_EXTRACTION_FIX.md)
-
 ---
 
 ## Success Criteria
 
 Evidence the model "understands" emotion:
 - Activations differentiate emotions (0.9461 similarity)
-- [TODO] SAE features are monosemantic & emotion-related
-- [TODO] Causal pathways match human music perception
-- [TODO] Activation steering produces coherent emotional shifts
-
-**Either positive or negative results are publishable** - the question itself is novel.
+- SAE features are monosemantic & emotion-related
+- Causal pathways match human music perception
+- Activation steering produces coherent emotional shifts
 
 
 ## Key Insights
